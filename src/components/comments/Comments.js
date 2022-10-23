@@ -10,7 +10,6 @@ const Comments = (props) =>{
     const [comments, setComments] = useState({});
     const [fetchComments, isCommentsLoading, errorComments] = useFetching(async () => {
         const response = await PostService.getComments(localStorage.getItem('access'), +props.id);
-        console.log(response);
         setComments(response.data);
     })
     useEffect(()=>{
