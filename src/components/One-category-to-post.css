@@ -1,0 +1,26 @@
+.one-category-to-post {
+    display: inline;
+    margin-left: 25px;
+}
+
+.one-category-to-post a{
+    color: rgb(238, 238, 238);
+    background-color: green;
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.one-category-to-post a:hover{
+    background-color: rgb(0, 165, 0);
+    color: white;
+}
+
+@media only screen and (max-width: 700px) {
+    .one-category-to-post {
+        display: block;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}

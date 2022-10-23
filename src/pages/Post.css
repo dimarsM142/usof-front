@@ -1,0 +1,448 @@
+.post {
+    margin: 60px 30px 20px 30px;
+    display: grid;
+    grid-template-areas: 
+    'title title title'
+    'author author date'
+    'text-content text-content status'
+    'categories categories categories'
+    'params params likes';
+}
+
+.post-container {
+    margin-bottom: 100px;
+}
+
+.post .post-author {
+    grid-area: author; 
+    padding: 10px;
+    padding-left: 10px;   
+}
+
+.post .post-author a {
+    color: green;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: 'Comfortaa', cursive;
+    font-size: 42px;
+    margin-left: 60px;
+    transition: 0.5s;
+}
+
+.post .post-author a:hover {
+    background-color: green;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+.post .post-status {
+    grid-area: status;
+    margin-right: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.post .post-status i {
+    font-size: 36px;
+}
+
+.post .post-status svg {
+    width: 36px;
+    height: 36px;
+}
+
+.post .post-status p{
+    margin-bottom: 10px;
+    color: rgb(151, 151, 151);
+    font-size: 18px;
+}
+
+.post .post-status .resizable svg{
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.post .post-status .resizable i{
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.post .post-status .resizable svg:hover{
+    color: green;
+    width: 45px;
+    height: 45px;
+}
+
+.post .post-status .resizable i:hover{
+    color: green;
+    font-size: 46px;
+}
+
+.post .post-date {
+    grid-area: date;
+    text-align: right;
+    padding: 10px;
+}
+
+.post .post-date p{
+    color: rgb(151, 151, 151);
+    font-size: 20px;
+}
+
+.post .post-title {
+    grid-area: title;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+
+.post .post-title p {
+    color: black;
+    font-weight: 700;
+    font-family: 'Comfortaa', cursive;
+    font-size: 40px;
+}
+
+.post .post-content {
+    grid-area: text-content;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-right: 70px;
+}
+
+.post .post-content {
+    color: rgb(82, 82, 82);
+    font-size: 32px;
+}
+
+.post .post-categories {
+    grid-area: categories;
+    padding-top: 20px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+}
+
+.post .post-params {
+    grid-area: params;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post .post-params .post-comments{
+    padding-left: 30px;
+}
+
+.post .post-params .post-comments a{
+    color: black;
+    font-size: 32px;
+    transition: 0.5s;
+}
+
+.post .post-params .post-comments a:hover{
+    color: green;
+    font-size: 38px;
+}
+
+.post .post-rating {
+    display: flex;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.post .post-rating img {
+    width: 64px;
+    height: 64px;
+}
+
+.post .post-rating p {
+   font-size: 40px;
+   padding-top: 5px;
+   padding-left: 10px;
+   color: rgb(104, 170, 104);
+   font-style: italic;
+}
+
+
+.post .post-likes {
+    grid-area: likes;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.post .post-likes-container {
+    font-size: 56px;
+}
+
+.post .post-likes .fa-thumbs-down, .post .post-likes .fa-thumbs-o-down  {
+    margin-right: 50px;
+    
+}
+
+.post .fa-thumbs-down, .post .fa-thumbs-o-down, .post .fa-thumbs-up, .post .fa-thumbs-o-up  {
+    cursor: pointer;    
+}
+
+.post-container .delete-container {
+    text-align: right;
+    margin: 100px 40px 150px 0px;
+}
+
+.post-container .delete-container button {
+    background-color: rgb(201, 19, 19);
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    border: none;
+    transition: 0.5s;
+    cursor: pointer;
+    
+}
+
+
+.post-container .delete-container button:hover{
+    background-color: rgb(88, 3, 3);
+}
+
+
+
+
+
+
+.post-container .delete-container button:active{
+    background-color: rgb(201, 19, 19);
+    color: #ffffff;
+    box-shadow: 0px 10px 15px rgb(112, 112, 112);
+}
+
+.post-form{
+    margin-top: 120px;
+    display: grid;
+    width: 400px;
+    background-color: white;
+    row-gap: 5px;
+    box-shadow: 0px 5px 5px rgb(112, 112, 112);
+    border-radius: 20px;
+    margin: 120px auto 100px auto;
+}
+
+.post-form > .header{
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: rgb(0, 161, 0);
+    text-align: center;
+    padding: 40px 0px;
+    font-size: 32px;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.post-form > .deleting-text {
+    color: rgb(0, 0, 0);
+    padding: 20px 0px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+
+.post-form > .buttons-delete {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 100px;
+    margin-top: 60px;
+ }
+ 
+.post-form  > .buttons-delete button{
+    width: 180px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    border: none;
+    transition: 0.5s;
+    cursor: pointer;
+}
+ 
+.post-form  > .buttons-delete .stay{
+    background-color: green;
+}
+ 
+.post-form  > .buttons-delete .delete-profile{
+    background-color: rgb(201, 19, 19);
+}
+ 
+.post-form > .buttons-delete .stay:hover{
+    background-color: rgb(23, 88, 3);
+}
+
+.post-form > .buttons-delete .delete-profile:hover{
+    background-color: rgb(88, 3, 3);
+}
+ 
+.post-form  > .buttons-delete .stay:active{
+    background-color: rgb(0, 150, 12);
+    color: #ffffff;
+    box-shadow: 0px 10px 15px rgb(112, 112, 112);
+}
+ 
+.post-form  > .buttons-delete .delete-profile:active{
+    background-color: rgb(201, 19, 19);
+    color: #ffffff;
+    box-shadow: 0px 10px 15px rgb(112, 112, 112);
+}
+
+
+.loading-one-post{
+    margin-top: 100px;
+    margin-bottom: 150px;
+}
+
+.loading-one-post .fake-post {
+    height: 200px;
+    width: 90%;
+    margin: 0px auto 20px auto;
+    border: 3px solid green;
+
+}
+
+.loading-one-post .fake-comments {
+    height: 100px;
+    width: 70%;
+    display: flex;
+    margin-left: auto;
+    margin-right: 5%;
+    border-bottom: 1px solid rgb(179, 179, 179);
+    border-left: 1px solid rgb(179, 179, 179);
+    border-right: 1px solid rgb(179, 179, 179);
+    background-color: rgb(214, 214, 214);
+    border-radius: 3px;
+}
+
+.loading-one-post .fake-comments:nth-child(1) {
+    border-top: 1px solid rgb(179, 179, 179);
+}
+
+.loading-one-post p {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+
+.loading-one-post .loader-container {
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 700px) and (max-width: 1000px){
+    
+    .post .post-content {
+        margin-right: 20px;
+    }
+
+    .post .post-content {
+        font-size: 24px;
+    }
+    .post .post-params{
+        margin-top: 20px;
+    }
+    .post .post-rating img {
+        width: 46px;
+        height: 46px;
+    }
+    .post .post-rating p {
+        font-size: 28px;
+    }
+    .post .post-likes-container {
+        font-size: 36px;
+        margin-top: 20px;
+    }
+    .post .post-likes .fa-thumbs-down, .post .post-likes .fa-thumbs-o-down  {
+        margin-right: 30px;
+    }
+    .post {
+        margin: 60px 20px 20px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 
+        'title title title'
+        'author author date'
+        'text-content text-content text-content'
+        'categories categories categories'
+        'params status likes';
+    }
+    .post .post-author a{
+        font-size: 28px;
+    }
+    .post .post-title p{
+        font-size: 28px;
+    }
+}
+
+
+@media only screen and (min-width: 400px) and (max-width: 700px){
+    
+    .post .post-content {
+        margin-right: 20px;
+    }
+
+    .post .post-content {
+        font-size: 24px;
+    }
+    .post .post-params{
+        margin-top: 20px;
+    }
+    .post .post-rating img {
+        width: 46px;
+        height: 46px;
+    }
+    .post .post-rating p {
+        font-size: 28px;
+    }
+    .post .post-likes-container {
+        font-size: 36px;
+        margin-top: 20px;
+    }
+    .post .post-likes .fa-thumbs-down, .post .post-likes .fa-thumbs-o-down  {
+        margin-right: 30px;
+    }
+    .post {
+        margin: 60px 20px 20px 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 
+        'title title title'
+        'author author date'
+        'text-content text-content text-content'
+        'categories categories categories'
+        'params status likes';
+    }
+    .post .post-categories {
+        margin: 20px 0px 0px 0px;
+    }
+    .post .post-date p{
+        color: rgb(151, 151, 151);
+        font-size: 16px;
+    }
+    .post .post-author a{
+        font-size: 18px;
+        margin-left: 20px;
+    }
+    .post .post-status p{
+        font-size: 14px;
+    }
+    .post .post-title p{
+        font-size: 22px;
+    }
+}

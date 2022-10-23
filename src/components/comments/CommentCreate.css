@@ -1,0 +1,52 @@
+.create-comment{
+    display: grid;
+}
+
+
+.create-comment textarea {
+    padding: 10px 20px;
+    border-radius: 5px;
+    height: 400px;
+    font-size: 18px;
+    color: rgb(82, 82, 82);
+    resize: none;
+    border: 2px solid rgb(179, 179, 179);
+    transition: 0.5s;
+    margin-bottom: 30px;
+}
+
+.create-comment textarea::placeholder {
+    color: rgb(82, 82, 82);
+    opacity: 0.3;
+}
+
+.create-comment textarea:focus {
+    outline: 0;
+    background-color: rgb(223, 223, 223);
+    border-left: 3px solid green;
+}
+
+
+.create-comment > .error{
+    color: rgb(197, 0, 0);
+    text-align: center;
+    opacity: 0;
+    animation-duration: 4s;
+    animation-name: errorAnimation;
+    margin: auto;
+    padding: 20px 0px;
+}
+
+@keyframes errorAnimation {
+    from {
+        opacity: 1;
+    }
+  
+    to {
+        opacity: 0.2;
+    }
+}
+
+.create-comment button {
+    margin: auto;
+}

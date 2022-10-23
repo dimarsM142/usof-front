@@ -1,0 +1,32 @@
+.inputClass {
+    background-color: rgb(214, 214, 214);
+    width: 280px;
+    height: 30px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+    border: none;
+    padding: 10px 30px;
+    transition: 0.5s;
+    
+    
+}
+.inputClass::placeholder {
+    color: #000000;
+    font-weight: 700;
+    opacity: 0.4;
+  }
+
+.inputClass:focus{
+    border: none;
+    outline: none;
+    width: 310px;
+}
+
+.password svg{
+    position: absolute;
+    margin-left: 320px;
+    margin-top: 10px;
+    color: green;
+}

@@ -1,0 +1,34 @@
+.all-categories {
+
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+.loading-categories{
+    margin-top: 100px;
+    margin-bottom: 150px;
+}
+
+
+.loading-categories .fake-categories {
+    height: 100px;
+    width: 70%;
+    margin: auto;
+    border: 3px solid green;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+
+.loading-categories p {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.loading-categories .loader-container {
+    display: flex;
+    justify-content: center;
+}

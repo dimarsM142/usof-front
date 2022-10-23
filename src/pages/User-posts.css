@@ -1,0 +1,230 @@
+.user-posts{
+    margin-top: 120px;
+    display:flex;
+    margin-bottom: 100px;
+}
+
+
+.user-posts .left-part{
+    width: 500px;
+    transition: 1s;
+}
+
+.user-posts .user-posts-info {
+    margin-left: 40px;
+}
+
+.user-posts .user-posts-info {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.user-posts .user-posts-info > img {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+}
+
+.user-posts .user-posts-info .login {
+   font-size: 28px;
+   color: green;
+   font-family: 'Comfortaa', cursive;
+}
+
+.user-posts .user-posts-info .user-rating {
+    display: flex;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.user-posts .user-posts-info .user-rating p{
+    margin-top: 12px;
+    margin-left: 7px;
+    font-size: 25px;
+    font-style: italic;
+    color: rgb(66, 66, 66);
+    font-weight: 700;
+
+}
+
+.user-posts .user-posts-info .full-name {
+    color: rgb(109, 109, 109);
+    margin-left: 20px;
+}
+
+.user-posts .status-title {
+    margin-top: 80px;
+}
+
+.user-posts .status-title, .user-posts .sort-title{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 22px;
+    margin-bottom: 5px;
+
+}
+
+.user-posts .status-content, .user-posts .sort-content{
+    display: flex;
+    justify-content: space-around;
+    margin: 0px 30px;
+    font-size: 18px;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;  
+    user-select: none;
+}
+
+.user-posts .status-content p, .user-posts .sort-content p {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.user-posts .status-content p:hover, .user-posts .sort-content p:hover{
+    font-weight: 700;
+    color: green;
+}
+
+.user-posts .status-content .active, .user-posts .sort-content .active{
+    font-weight: 700;
+    color: green;
+}
+
+.user-posts .center-part{
+    width: 100%;
+    margin-left: 30px;
+    margin-right: 70px;
+    transition: 1s;
+}
+
+
+.user-posts .post-create{
+    margin-left: 20px;
+    margin: 0px 0 50px 20px;
+}
+
+
+.user-posts .post-create a{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    background-color: green;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 5px 25px;
+    transition: 0.5s;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;  
+    user-select: none;
+}
+
+.user-posts .post-create a:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(41, 177, 0);
+    padding: 5px 35px;
+    border-radius: 10px;
+
+}
+
+.user-posts .post-create p{
+    font-size: 16px;
+    padding-bottom: 15px;
+}
+
+.user-posts .pagination {
+    margin-top: 20px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: right;
+}
+
+.user-posts .change-page {
+    color: black;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(243, 243, 243);
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.user-posts .number-page{
+    text-align: center;
+    height: 43px;
+    width: 50px;
+    padding-top: 3px;
+    font-size: 28px;
+    font-weight: 700;
+    cursor: default;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;  
+    user-select: none;
+}
+
+.user-posts .right, .user-posts .left {
+    cursor: pointer;
+}
+
+.user-posts .right:hover, .user-posts .left:hover {
+    color: white;
+    background-color: rgb(0, 0, 0);
+}
+
+.user-posts .change-page svg{
+    width: 40px;
+    height: 40px;
+}
+
+.user-posts .no-posts{
+    text-align: center;
+    color: green;
+    font-weight: 700;
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+@media only screen and (min-width: 1015px) and (max-width: 1370px) {
+    .user-posts .title{
+        font-size: 36px;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1015px) {
+    .user-posts{
+        display: block;
+    }
+    .user-posts .left-part{
+        width:auto;
+        margin-bottom: 60px;
+        margin-left: 20px;
+    }
+    .user-posts .center-part{
+        width: auto;
+        margin-right: 30px;
+    }    
+}
+
+@media only screen and (max-width: 600px) {
+    .user-posts .user-posts-info .login {
+        font-size: 20px;
+        color: green;
+        font-family: 'Comfortaa', cursive;
+     }
+    .user-posts{
+        display: block;
+    }
+    .user-posts .left-part{
+        width: auto;
+        margin-bottom: 60px;
+        margin-left: 0px;
+    }
+    .user-posts .center-part{
+        width: auto;
+        margin-right: 00px;
+    }    
+}

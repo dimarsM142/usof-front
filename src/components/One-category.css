@@ -1,0 +1,30 @@
+.category {
+    border: 3px solid green;
+    max-width: 1000px;
+    margin: auto;    
+    margin-bottom: 10px;
+}
+
+.category .title {
+    margin: 15px 0px 25px 25px;
+}
+
+.category a{
+    font-family: 'Comfortaa', cursive;
+    color: rgb(0, 0, 0);
+    font-size: 32px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.category a:hover{
+    padding: 5px 25px;
+    background-color: green;
+    color: white;
+}
+
+.category .description {
+    margin: 10px 30px;
+    color: rgb(82, 82, 82);
+}

@@ -1,0 +1,130 @@
+.post-create {
+    display: grid;   
+    row-gap: 10px;
+    box-shadow: 0px 5px 5px rgb(112, 112, 112);
+    border-radius: 20px;
+    max-width: 1000px;
+    margin: 120px auto 150px auto;
+    padding: 0;
+    background-color: white;
+
+}
+
+.post-create > .header{
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: rgb(0, 161, 0);
+    text-align: center;
+    padding: 40px 0px;
+    font-size: 32px;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.post-create .name-title-post-create {
+    margin-left: 360px;
+}
+
+.post-create input {
+    width: 250px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.post-create .name-question-post-create {
+    margin-left: 5%;
+}
+
+.post-create .question-post-create {
+    margin-left: 20px;
+    margin-right: 60px;
+}
+
+.post-create textarea {
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 100%;
+    height: 400px;
+    font-size: 18px;
+    color: rgb(82, 82, 82);
+    resize: none;
+    border: 2px solid rgb(179, 179, 179);
+    transition: 0.5s;
+}
+
+.post-create textarea::placeholder {
+    color: rgb(82, 82, 82);
+    opacity: 0.3;
+}
+
+.post-create textarea:focus {
+    outline: 0;
+    background-color: rgb(223, 223, 223);
+    border-left: 3px solid green;
+}
+.post-create .name-categories-post-create {
+    margin-left: 7%;
+}
+.post-create .select-create {
+    width: 90%;
+    margin: auto;
+}
+
+.post-create .select1 {
+    color: white;
+}
+.post-create button {
+    margin: 40px auto 100px auto; 
+}
+
+.post-create > .error{
+    color: rgb(197, 0, 0);
+    text-align: center;
+    opacity: 0;
+    animation-duration: 4s;
+    animation-name: errorAnimation;
+    margin: auto;
+    padding: 20px 0px;
+}
+
+@keyframes errorAnimation {
+    from {
+        opacity: 1;
+    }
+  
+    to {
+        opacity: 0.5;
+    }
+}
+
+.post-create > .loading-text {
+    color: rgb(0, 0, 0);
+    padding: 20px 20px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.post-create > .loader{
+    margin: auto;
+    margin-bottom: 40px;   
+}
+
+
+
+
+@media only screen and (max-width: 1050px) {
+    .post-create {
+        margin: 120px 15px 100px 15px;    
+    }
+    .post-create .name-title-post-create {
+        margin: auto;
+        padding-right: 200px;
+    }
+    .post-create textarea {
+        height: 200px;
+    }
+    
+}

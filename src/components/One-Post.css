@@ -1,0 +1,211 @@
+.one-post {
+    border-bottom: 1px solid rgb(179, 179, 179);
+    border-left: 1px solid rgb(179, 179, 179);
+    border-right: 1px solid rgb(179, 179, 179);
+    border-radius: 3px;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas: 
+    'author status date'
+    'title title title'
+    'text-content text-content text-content'
+    'categories categories categories'
+    'params params likes';
+    transition: 0.5s;
+}
+.one-post:hover {
+    background-color: rgb(223, 223, 223);
+}
+
+
+.one-post .post-author {
+    grid-area: author; 
+    padding: 10px;
+    padding-left: 40px;   
+}
+
+.one-post .post-author a {
+    color: green;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: 'Comfortaa', cursive;
+    font-size: 22px;
+    transition: 0.5s;
+}
+
+.one-post .post-author a:hover {
+    color: white;
+    background-color: green;
+    padding: 5px 25px;
+}
+
+.one-post .post-status {
+    grid-area: status;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.one-post .post-status i {
+    font-size: 36px;
+}
+
+.one-post .post-status svg {
+    width: 36px;
+    height: 36px;
+}
+
+.one-post .post-date {
+    grid-area: date;
+    text-align: right;
+    padding: 10px;
+}
+
+.one-post .post-date p{
+    color: rgb(151, 151, 151);
+    font-size: 15px;
+}
+
+.one-post .post-title {
+    grid-area: title;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+
+.one-post .post-title a {
+    color: black;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    font-family: 'Comfortaa', cursive;
+    font-size: 18px;
+    transition: 0.5s;
+}
+
+.one-post .post-title a:hover {
+    color: green;
+    font-size: 22px;
+}
+
+.one-post .post-content {
+    grid-area: text-content;
+    padding: 10px 20px;
+}
+
+.one-post .post-content {
+    color: rgb(82, 82, 82);
+    font-size: 17px;
+}
+
+.one-post .post-categories {
+    grid-area: categories;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.one-post .post-params {
+    grid-area: params;
+    display: flex;
+    justify-content: space-between;
+}
+
+.one-post .post-params .post-comments{
+    padding-left: 30px;
+}
+
+.one-post .post-params .post-comments a{
+    color: black;
+    font-size: 32px;
+    transition: 0.5s;
+}
+
+.one-post .post-params .post-comments a:hover{
+    color: green;
+    font-size: 38px;
+}
+
+.one-post .post-rating {
+    display: flex;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.one-post .post-rating img {
+    width: 46px;
+    height: 46px;
+}
+
+.one-post .post-rating p {
+   font-size: 28px;
+   padding-top: 5px;
+   padding-left: 5px;
+   color: rgb(104, 170, 104);
+   font-style: italic;
+}
+
+
+.one-post .post-likes {
+    grid-area: likes;
+    text-align: right;
+    padding-right: 30px;
+}
+
+.one-post .post-likes-container {
+    font-size: 36px;
+}
+
+.one-post .post-likes .fa-thumbs-down, .one-post .post-likes .fa-thumbs-o-down  {
+    margin-right: 40px;
+    
+}
+
+.one-post .fa-thumbs-down, .one-post .fa-thumbs-o-down, .one-post .fa-thumbs-up, .one-post .fa-thumbs-o-up  {
+    cursor: pointer;    
+}
+
+
+
+.one-post:nth-child(1){
+    border-top: 1px solid rgb(179, 179, 179);
+}
+
+
+@media only screen and (min-width: 500px) and (max-width: 1050px){
+    .one-post .post-author {
+        padding-left: 10px;
+    }
+    .one-post .post-author a {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .one-post .post-status {
+        display: none;
+    }
+    .one-post .post-author {
+        padding-left: 10px;
+    }
+    .one-post .post-author a {
+        font-size: 17px;
+    }
+    .one-post .post-title a {
+        font-size: 14px;
+    }
+    .one-post .post-title a:hover {
+        color: green;
+        font-size: 16px;
+    }
+    .one-post .post-likes {
+        padding-right: 20px;
+    }
+    
+    .one-post .post-likes-container {
+        font-size: 28px;
+    }
+    
+    .one-post .post-likes .fa-thumbs-down, .one-post .post-likes .fa-thumbs-o-down  {
+        margin-right: 20px;
+        
+    }
+}
