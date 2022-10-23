@@ -234,7 +234,10 @@ const Register = (props) => {
                             <MyButton type='submit' onClick={sendPass}>Зареєструватися</MyButton>
                             {error && <p className="error">{error}</p>}       
                             <p className="lastPartName">Вже маєте акаунт?</p>
-                            <Link to="/login" className="lastPart">Зайти в акаунт</Link>
+                            <div className="lastPart">
+                                <Link to="/login">Зайти в акаунт</Link>
+                            </div>
+                            
                         </div>   
                     }
                    

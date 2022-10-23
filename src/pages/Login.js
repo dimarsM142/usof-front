@@ -113,11 +113,15 @@ const Login = (props) => {
                             <MyInput type="text" placeholder="логін" value={dataInputed.login} onChange={e => setDataInputed({...dataInputed, login: e.target.value})}/>
                             <p className="nameInput">пароль:</p>
                             <MyInput type="password" placeholder="пароль" value={dataInputed.password} onChange={e => setDataInputed({...dataInputed, password: e.target.value})}/>
-                            <Link to="/forgot-password" className="forgotPassword">Забули пароль?</Link>
+                            <div className="forgotPassword">
+                                <Link to="/forgot-password">Забули пароль?</Link>
+                            </div>
                             <MyButton type='submit' onClick={sendPass}>Увійти</MyButton>
                             {errorText && <p className="error">{errorText}</p>}
                             <p className="lastPartName">Не маєте акаунту?</p>
-                            <Link className="lastPart" to="/register">Реєструйтесь</Link>
+                            <div className="lastPart" >
+                                <Link to="/register">Реєструйтесь</Link>
+                            </div>
                         </div>
                     }
                 </div>

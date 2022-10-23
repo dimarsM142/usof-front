@@ -115,7 +115,7 @@
 
 
 
-@media only screen and (max-width: 1050px) {
+@media only screen and (min-width: 410px) and (max-width: 1050px) {
     .post-create {
         margin: 120px 15px 100px 15px;    
     }
@@ -125,6 +125,65 @@
     }
     .post-create textarea {
         height: 200px;
+    }   
+}
+
+
+@media only screen and (min-width: 340px) and (max-width: 410px) {
+    .post-create {
+        margin: 120px 5px 100px 5px;    
     }
+    .post-create .header {
+        font-size: 20px;
+    }
+    .post-create .name-title-post-create {
+        margin: auto;
+        padding-right: 160px;
+    }
+    .post-create textarea {
+        height: 200px;
+    }
+    .post-create input {
+        width: 200px;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .post-create input:focus {
+        width: 240px;
+    }
+    .post-create button {
+        width: 250px;
+    }
+}
+
+
+@media only screen and (max-width: 340px) {
+   
+    .post-create {
+        margin: 120px 5px 100px 5px;    
+    }
+    .post-create .header {
+        font-size: 20px;
+    }
+    .post-create .name-title-post-create {
+        margin-left: 10px;
+        padding-right: 0px;
+    }
+    .post-create textarea {
+        height: 200px;
+    }
+    .post-create input {
+        width: 120px;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+    .post-create input:focus {
+        width: 160px;
+    }
+    .post-create button {
+        width: 180px;
+        font-size: 10px;
+    }
+    
     
 }

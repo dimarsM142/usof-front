@@ -167,6 +167,7 @@ const UserInfo = (props) => {
         }
         else{
             setSelectedFile(e.target.files[0]);
+            console.log(e.target.files[0]);
             setIsFilePicked(true);
 
         }

@@ -61,6 +61,10 @@
     text-transform: uppercase;
     font-size: 22px;
     margin-bottom: 5px;
+    margin-left: 15px;
+    border: 2px solid rgb(37, 148, 37);
+    border-radius: 5px;
+
 
 }
 
@@ -89,6 +93,10 @@
 .user-posts .status-content .active, .user-posts .sort-content .active{
     font-weight: 700;
     color: green;
+}
+
+.user-posts .status-content {
+    margin-bottom: 80px;
 }
 
 .user-posts .center-part{
@@ -188,13 +196,17 @@
     text-transform: uppercase;
 }
 
-@media only screen and (min-width: 1015px) and (max-width: 1370px) {
+@media only screen and (min-width: 1305px) and (max-width: 1370px) {
     .user-posts .title{
         font-size: 36px;
     }
 }
 
-@media only screen and (min-width: 600px) and (max-width: 1015px) {
+@media only screen and (min-width: 600px) and (max-width: 1305px) {
+    .user-posts .status-title, .user-posts .sort-title{
+        margin-right: 40px;
+        margin-left: 40px;   
+    }
     .user-posts{
         display: block;
     }
@@ -209,7 +221,11 @@
     }    
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 420px) and (max-width: 600px) {
+    .user-posts .status-title, .user-posts .sort-title{
+        margin-right: 20px;
+        margin-left: 20px;   
+    }
     .user-posts .user-posts-info .login {
         font-size: 20px;
         color: green;
@@ -225,6 +241,46 @@
     }
     .user-posts .center-part{
         width: auto;
-        margin-right: 00px;
+        margin-left: 5px;
+        margin-right: 5px;
     }    
+}
+
+@media only screen and (max-width: 420px) {
+    .user-posts .status-title, .user-posts .sort-title{
+        margin-right: 10px;
+        margin-left: 10px;   
+    }
+    .user-posts .user-posts-info .login {
+        font-size: 20px;
+        color: green;
+        font-family: 'Comfortaa', cursive;
+    }
+    .user-posts{
+        display: block;
+    }
+    .user-posts .left-part{
+        width: auto;
+        margin-bottom: 60px;
+        margin-left: 0px;
+    }
+    .user-posts .center-part{
+        width: auto;
+        margin-left: 5px;
+        margin-right: 5px;
+    }   
+    .user-posts .user-posts-info > img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50px;
+    } 
+    .user-posts .user-posts-info .login {
+        font-size: 18px;
+        color: green;
+        font-family: 'Comfortaa', cursive;
+    }
+    .user-posts .user-posts-info {
+        margin-left: 5px;
+    }
+     
 }

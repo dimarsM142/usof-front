@@ -35,9 +35,12 @@
 
 .loginForm > .forgotPassword {
     text-align: right;
+    margin: 10px 25px 10px 0px;
+}
+
+.loginForm > .forgotPassword a{
     color: green;
     text-decoration: none;
-    margin: 10px 25px 10px 0px;
 }
 
 .loginForm > button {
@@ -55,6 +58,9 @@
 .loginForm > .lastPart {
     margin-bottom: 40px;
     text-align: center;
+}
+
+.loginForm > .lastPart a{
     color: green;
     font-weight: 700;
     text-decoration: none;
@@ -106,4 +112,64 @@
 }
 
 
+@media only screen and (min-width: 340px) and (max-width: 410px){
+    .loginForm {
+        width: 300px;
+    }
+    
+    .loginForm > .header{
+        font-size: 28px;
+    }
+    
+    .loginForm input {
+        width: 150px;
+    }
+    .loginForm input:focus {
+        width: 200px;
+    }
+    .loginForm > button {
+        width: 150px;
+        margin: auto;
+        margin-top: 40px;
+    }
+    .loginForm .nameInput {
+        margin-left: 55px;
+    }
+    .loginForm .password svg{
+        margin-left: 170px;
+    }
+    .loginForm > .error{
+        width: 200px;
+    }
+}
 
+@media only screen and (max-width: 340px){
+    .loginForm {
+        width: 200px;
+    }
+    
+    .loginForm > .header{
+        font-size: 24px;
+    }
+    
+    .loginForm input {
+        width: 100px;
+    }
+    .loginForm input:focus {
+        width: 120px;
+    }
+    .loginForm > button {
+        width: 150px;
+        margin: auto;
+        margin-top: 40px;
+    }
+    .loginForm .nameInput {
+        margin-left: 35px;
+    }
+    .loginForm .password svg{
+        margin-left: 120px;
+    }
+    .loginForm > .error{
+        width: 200px;
+    }
+}

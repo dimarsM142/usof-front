@@ -96,7 +96,9 @@ const PasswordReset = () => {
                         <MyButton type='submit' onClick={sendPass}>Надіслати</MyButton>
                         {errorText && <p className="error">{errorText}</p>}
                         <p className="lastPartName">Виникла помилка? Спробуйте надіслати ще раз</p>
-                        <Link className="lastPart" to="/forgot-password">Змінити пароль</Link>         
+                        <div className="lastPart" >
+                            <Link to="/forgot-password">Змінити пароль</Link> 
+                        </div>        
                     </div>   
                 }
             </div>

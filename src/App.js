@@ -25,6 +25,7 @@ function App() {
     }
     function refreshToken(){
         fetchRefresh();
+        console.log("TICK");
     }
     useEffect(() =>{
         if(localStorage.getItem('isAuth') === 'true'){
@@ -38,6 +39,7 @@ function App() {
     const [fetchRefresh, isPostsLoading, refreshError] = useFetching(async () => {
         const response = await PostService.refreshToken(localStorage.getItem('refresh'));
             if(response.data && response.data.AccessToken){
+                console.log("Я ОНОВИВ ТОКЕНИ")
                 localStorage.setItem('access', response.data.AccessToken);
                 localStorage.setItem('refresh', response.data.RefreshToken);
                 localStorage.setItem('isAuth', 'true');
@@ -51,8 +53,10 @@ function App() {
             localStorage.setItem('access', '');
             localStorage.setItem('refresh', '');
             localStorage.setItem('isAuth', 'false');
-            localStorage.setItem('login', '');
-            localStorage.setItem('ava', '');
+            window.localStorage.setItem('login', '');
+            window.localStorage.setItem('ava', '');
+            console.log("ЗМІНИВСЯ СТАТУС ПОМИЛКИ!");
+            console.log(refreshError);
         }
     }, [refreshError]);
     return (

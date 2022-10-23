@@ -391,14 +391,14 @@
 }
 
 
-@media only screen and (min-width: 400px) and (max-width: 700px){
+@media only screen and (min-width: 420px) and (max-width: 700px){
     
     .post .post-content {
         margin-right: 20px;
     }
 
     .post .post-content {
-        font-size: 24px;
+        font-size: 18px;
     }
     .post .post-params{
         margin-top: 20px;
@@ -445,4 +445,69 @@
     .post .post-title p{
         font-size: 22px;
     }
+}
+
+
+
+@media only screen and (max-width: 420px){
+    .post {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 
+        'date date date'
+        'title title title'
+        'author author author'
+        'text-content text-content text-content'
+        'categories categories categories'
+        'likes likes likes'
+        'params params status';
+    }
+    .post .post-content {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    .post .post-params{
+        margin-top: 40px;
+    }
+    .post .post-rating img {
+        width: 46px;
+        height: 46px;
+    }
+    .post .post-rating p {
+        font-size: 30px;
+    }
+    .post .post-likes-container {
+        font-size: 32px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+    .post .post-likes .fa-thumbs-down, .post .post-likes .fa-thumbs-o-down  {
+        margin-right: 30px;
+    }
+
+    .post .post-categories {
+        margin: 0px 0px 0px 0px;
+        text-align: left;
+    }
+    .post .post-date p{
+        color: rgb(151, 151, 151);
+        font-size: 16px;
+    }
+    .post .post-author a{
+        font-size: 18px;
+        margin-left: 20px;
+    }
+    .post .post-status p{
+        font-size: 14px;
+    }
+    .post .post-title p{
+        font-size: 22px;
+    }
+    .post .post-date {
+        grid-area: date;
+        text-align: right;
+        padding: 0px;
+        margin-top: 5px;
+    }
+    
 }

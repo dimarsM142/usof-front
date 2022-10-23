@@ -27,3 +27,13 @@
 .all-comments .comments-create-container {
     margin-bottom: 100px;
 }
+
+
+@media only screen and (max-width: 450px){
+    
+    .all-comments .comments-container > p{
+        font-size: 24px;
+        margin-left: 10px;
+    }
+
+}

@@ -29,7 +29,7 @@
     text-decoration: none;
     font-family: 'Comfortaa', cursive;
     font-size: 20px;
-    color: black;
+    color: green;
     transition: 0.5s;
 }
 
@@ -122,7 +122,7 @@
     font-size: 36px;
 }
 
-@media only screen and (max-width: 550px){
+@media only screen and (min-width: 450px) and (max-width: 550px){
     .one-comment .post-likes-container {
         font-size: 22px;
     }
@@ -139,5 +139,47 @@
     .one-comment .comment-content {
         color: rgb(82, 82, 82);
         font-size: 15px;
+    }
+
+}
+
+
+@media only screen and (max-width: 450px){
+    .one-comment {
+
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+        'date delete-comment delete-comment'
+        'author author author'
+        'comment-content comment-content comment-content'
+        'rating rating likes';
+    }
+    .one-comment .post-likes-container {
+        font-size: 22px;
+    }
+    .one-comment .post-likes {
+        margin-right: 10px;
+    }
+    .one-comment .post-likes .fa-thumbs-down, .one-comment .post-likes .fa-thumbs-o-down  {
+        margin-right: 15px;
+        
+    }
+    .one-comment .comment-rating {
+        justify-content: flex-start;
+    }    
+    .one-comment .comment-content {
+        color: rgb(82, 82, 82);
+        font-size: 14px;
+    }
+    
+    .one-comment .comment-date {
+        padding-top: 5px;
+        padding-left: 20px;
+    }
+    .one-comment .comment-author a{
+        font-size: 18px;
+    }
+    .one-comment .comment-author a:hover {
+        padding: 5px 5px;
     }
 }

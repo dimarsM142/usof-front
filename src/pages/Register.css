@@ -49,6 +49,9 @@
 .registerForm > .lastPart {
     margin-bottom: 40px;
     text-align: center;
+}
+
+.registerForm > .lastPart a{
     color: green;
     font-weight: 700;
     text-decoration: none;
@@ -119,5 +122,70 @@
     to {
         opacity: 0;
     }
-  }
+}
+
+
+
+@media only screen and (min-width: 340px) and (max-width: 410px){
+    .registerForm {
+        width: 300px;
+    }
+    
+    .registerForm > .header{
+        font-size: 28px;
+    }
+    
+    .registerForm input {
+        width: 150px;
+    }
+    .registerForm input:focus {
+        width: 200px;
+    }
+    .registerForm > button {
+        width: 180px;
+        margin: auto;
+        margin-top: 40px;
+    }
+    .registerForm .nameInput {
+        margin-left: 55px;
+    }
+    .registerForm .password svg{
+        margin-left: 170px;
+    }
+    .registerForm > .error{
+        width: 250px;
+    }
+}
+
+@media only screen and (max-width: 340px){
+    .registerForm {
+        width: 200px;
+    }
+    
+    .registerForm > .header{
+        font-size: 24px;
+    }
+    
+    .registerForm input {
+        width: 100px;
+    }
+    .registerForm input:focus {
+        width: 120px;
+    }
+    .registerForm > button {
+        width: 180px;
+        margin: auto;
+        margin-top: 40px;
+    }
+    .registerForm .nameInput {
+        margin-left: 35px;
+    }
+    .registerForm .password svg{
+        margin-left: 120px;
+    }
+    .registerForm > .error{
+        width: 200px;
+    }
+}
+
   

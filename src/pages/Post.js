@@ -18,6 +18,7 @@ const PostById = () => {
     const [successDeleting, setSuccessDeleting] = useState(false);
     const [fetchPost, isPostLoading, errorPost] = useFetching(async () => {
         const response = await PostService.getPostByID(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
+        console.log(response);
         if(response.data[0]){
             setPost(response.data[0]);
             setStatus(response.data[0].status);
@@ -60,12 +61,16 @@ const PostById = () => {
     useEffect(()=>{
         fetchPost();
         fetchLikes();
+        if(likes.length !== 0){
+            //console.log(likes[0].whoLiked);
+        }
     }, []);
     useEffect(()=>{
         if(likes.length !== 0) {
             for(let i = 0; i < likes.length; i++){
                 
                 if(likes[i].whoLiked === localStorage.getItem('login')){
+                    //console.log(likes[i]);
                     setIsLiked(likes[i].type);
                     break;
                 }
@@ -80,6 +85,7 @@ const PostById = () => {
     },[errorPost, errorDeletePost, errorLikes, errorDeleteLikes, errorCreateLikes, errorStatusChange]);
 
     function deletePost(e){
+        console.log(e);
         setSuccessDeleting(true);
         //fetchDeletePost();
     }
@@ -106,7 +112,8 @@ const PostById = () => {
 
     function likeFoo(e){
         e.preventDefault();
-        if(localStorage.getItem('isAuth') === 'false'){
+        if(localStorage.getItem('isAuth') !== 'true'){
+            router('/login');
             return;
         }
         if(e.currentTarget.className === 'fa fa-thumbs-down'){

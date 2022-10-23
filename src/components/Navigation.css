@@ -70,7 +70,7 @@
     }
 }
 
-@media only screen and (max-width: 710px) {
+@media only screen and (min-width: 380px) and (max-width: 710px) {
     .up-nav .logo {
         display: none;
     }
@@ -82,7 +82,7 @@
         display: none;
     }
     .up-nav a {
-        padding: 20px 31px;
+        padding: 20px 20px;
     }
     .up-nav .account a {
         padding: 20px 32.1px;
@@ -92,3 +92,46 @@
     }
 }
 
+@media only screen and (min-width: 315px) and (max-width: 380px) {
+    .up-nav .logo {
+        display: none;
+    }
+    .up-nav .account p {
+        display: none;
+    }
+    
+    .up-nav p {
+        display: none;
+    }
+    .up-nav a {
+        padding: 20px 10px;
+    }
+    .up-nav .account a {
+        padding: 20px 32.1px;
+    }
+    .up-nav ul{
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 315px) {
+    .up-nav .logo {
+        display: none;
+    }
+    .up-nav .account p {
+        display: none;
+    }
+    
+    .up-nav p {
+        display: none;
+    }
+    .up-nav a {
+        padding: 20px 0px;
+    }
+    .up-nav .account a {
+        padding: 20px 32.1px;
+    }
+    .up-nav ul{
+        margin-left: 0px;
+    }
+}

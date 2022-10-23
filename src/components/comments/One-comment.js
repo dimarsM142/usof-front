@@ -36,7 +36,8 @@ const OneComment = (props) =>{
     
     function likeFoo(e){
         e.preventDefault();
-        if(localStorage.getItem('isAuth') === 'false'){
+        if(localStorage.getItem('isAuth') !== 'true'){
+            router('/login');
             return;
         }
         if(e.currentTarget.className === 'fa fa-thumbs-down'){

@@ -106,7 +106,10 @@ const ForgotPassword = () => {
                         <MyButton type='submit' onClick={sendPass}>Надіслати</MyButton>
                         {errorText && <p className="error">{errorText}</p>} 
                         <p className="lastPartName">Згадали пароль?</p>
-                        <Link className="lastPart" to="/login">Зайти в акаунт</Link>
+                        <div className="lastPart">
+                            <Link to="/login">Зайти в акаунт</Link>
+                        </div>
+                        
                            
                     </div>   
                 }      

@@ -170,22 +170,41 @@
 }
 
 
-@media only screen and (min-width: 500px) and (max-width: 1050px){
+@media only screen and (min-width: 550px) and (max-width: 1050px){
     .one-post .post-author {
         padding-left: 10px;
     }
     .one-post .post-author a {
         font-size: 18px;
     }
+    .one-post .post-author a:hover {
+        color: white;
+        background-color: green;
+        padding: 5px 10px;
+    }
 }
 
-@media only screen and (max-width: 500px) {
-    .one-post .post-status {
-        display: none;
+@media only screen and (max-width: 550px) {
+    .one-post {
+        grid-template-rows: auto auto auto auto auto auto auto;
+        grid-template-areas: 
+        'status date date'
+        'author author author'
+        'title title title'
+        'text-content text-content text-content'
+        'categories categories categories'
+        'likes likes likes'
+        'params params params';
     }
     .one-post .post-author {
         padding-left: 10px;
     }
+    .one-post .post-author a:hover {
+        color: white;
+        background-color: green;
+        padding: 5px 10px;
+    }
+    
     .one-post .post-author a {
         font-size: 17px;
     }
@@ -198,6 +217,7 @@
     }
     .one-post .post-likes {
         padding-right: 20px;
+        margin-bottom: 30px;
     }
     
     .one-post .post-likes-container {
