@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {useFetching} from '../hooks/useFetching.js';
 import PostService from '../API/PostService.js';
 import OneCategory from "../components/One-category.js";
@@ -51,12 +51,16 @@ const Categories = () => {
                         ?
                             <p className="no-posts">Відсутні пости, які відповідають заданим критеріям :(</p>
                         :
-                        <div className="all-categories">
-                            {categories.map((category) =><OneCategory category={category} key={category.categoryID}/>)}
-                        </div>
+                            <div className="all-categories">
+                                {categories.map((category) =><OneCategory category={category} key={category.categoryID} fetchCategories={fetchCategories}/>)}
+                                {localStorage.getItem('role') === 'admin' && 
+                                    <div className="creating-category">
+                                        <Link to='/admin/create-category'>Створити нову категорію</Link>
+                                    </div>
+                                }
+                            </div>
                     }
                 </div>
-                
             }
         </div>
     );

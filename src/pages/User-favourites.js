@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useFetching} from '../hooks/useFetching.js';
 import PostService from '../API/PostService.js';
 import OnePost from "../components/One-Post.js";
-import './User-posts.css';
+import './User-favourites.css';
 import MyLoader from "../components/UI/MyLoader2.js";
-const UserPosts = () => {
+const UserFavourites = () => {
     const router = useNavigate();
     const [login, setLogin] = useState({});
     const [ava, setAva] = useState('');
@@ -15,25 +15,25 @@ const UserPosts = () => {
     const [isNext, setIsNext] = useState(10000000000000);
     const [active, setActive] = useState({date: '', rating: 'active', active: '', inactive:'', all: 'active'});
     const [fetchAvatarInfo, isAvatarLoading, errorAvatarInfo] = useFetching(async () => {
-        const response = await PostService.getUserAvatarLogin(window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/posts')));
+        const response = await PostService.getUserAvatarLogin(window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/favourite')));
         setAva(response.data.picture);
     })
     const [fetchUserInfo, isUserLoading, errorUserInfo] = useFetching(async () => {
-        const response = await PostService.getUserInfoLogin(window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/posts')));
+        const response = await PostService.getUserInfoLogin(window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/favourite')));
         setData({login: response.data[0].login, fullName: response.data[0].fullName, rating: response.data[0].rating});
     })
 
 
 
     const [fetchUserPosts, isUserPostsLoading, errorUserPosts] = useFetching(async () => {
-        const response = await PostService.getUserPosts(localStorage.getItem('access'), window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/posts')), params);
+        const response = await PostService.getFavouritesByUserLogin(localStorage.getItem('access'), window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/favourite')), params.page);
         if(response.data.message || response.data.length === 0){
             setPosts('0 posts');
         }
         else{ 
             setPosts(response.data);
             if(isNext === 10000000000000){
-                const responseNext = await PostService.getUserPosts(localStorage.getItem('access'), window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/posts')), params, params.page + 1);
+                const responseNext = await PostService.getFavouritesByUserLogin(localStorage.getItem('access'), window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/favourite')), params.page + 1);
                 if(responseNext.data.message || responseNext.data.length === 0){
                     setIsNext(params.page);
                 }
@@ -43,7 +43,7 @@ const UserPosts = () => {
     })
 
     useEffect(()=>{
-        setLogin(window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/posts')));
+        setLogin(window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/favourite')));
         fetchUserInfo();
         fetchAvatarInfo();
     }, []);
@@ -58,46 +58,6 @@ const UserPosts = () => {
     useEffect(()=>{
         fetchUserPosts();
     }, [params]);
-
-    function chooseSort(e){
-        if(e.target.textContent === 'за датою'){
-            if(params.sort !== 'date') {
-                setActive({...active,  rating: '', date: 'active'});
-                setIsNext(10000000000000);
-                setParams({...params, sort:"date", page: 1});
-            }
-        }
-        else if(e.target.textContent === 'за рейтингом'){
-            if(params.sort !== 'rating') {
-                setActive({...active,  rating: 'active', date: ''});
-                setIsNext(10000000000000);
-                setParams({...params, sort:"rating", page: 1})
-            }
-        }
-    }
-    function chooseStatus(e){
-        if(e.target.textContent === 'активні'){
-            if(params.status !== 'active'){
-                setActive({...active, active: 'active', all: '', inactive: ''});
-                setIsNext(10000000000000);
-                setParams({...params, status:"active", page: 1})
-            }
-        }
-        else if(e.target.textContent === 'завершені'){
-            if(params.status !== 'inactive'){
-                setActive({...active, active: '', all: '', inactive: 'active'});
-                setIsNext(10000000000000);
-                setParams({...params, status:"inactive", page: 1})
-            }
-        }
-        else if(e.target.textContent === 'всі'){
-            if(params.status) {
-                setActive({...active, active: '', all: 'active', inactive: ''});
-                setIsNext(10000000000000);
-                setParams({...params, status:"", page: 1})
-            }
-        }
-    }
 
     return (
         <div>
@@ -145,7 +105,7 @@ const UserPosts = () => {
                                     </div>
                                 </div>
                                 :
-                                <div className="user-posts">
+                                <div className="user-favourite-posts">
                                     <div className="left-part">
                                         <div className="user-posts-info">
                                             <img src={ava} alt="ava"/>
@@ -154,38 +114,22 @@ const UserPosts = () => {
                                                 <p className="full-name">{info.fullName}</p>             
                                                 <div className="user-rating">
                                                     <img src='https://cdn-icons-png.flaticon.com/128/3163/3163706.png' alt='txt' />
-                                                    <p >{info.rating}</p>                                    
+                                                    <p >{info.rating}</p>
+                                                                                          
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div className="user-posts-favourite">
-                                            <Link to={{pathname: `/${window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/posts'))}/favourite`}}>Збережені</Link>
-                                        </div>
-                                        <div className="status-type">
-                                            <p className="status-title">Статус</p> 
-                                            <div className="status-content">
-                                                <p onClick={chooseStatus} className={active.active}>активні</p>
-                                                <p onClick={chooseStatus} className={active.inactive}>завершені</p>
-                                                <p onClick={chooseStatus} className={active.all}>всі</p>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="sort-type">
-                                            <p className="sort-title">Сортування</p> 
-                                            <div className="sort-content">
-                                                <p onClick={chooseSort} className={active.date}>за датою</p>
-                                                <p onClick={chooseSort} className={active.rating}>за рейтингом</p>
                                             </div>
                                         </div>
                                     </div> 
                                     <div className="center-part">
+                                        
                                         {posts === '0 posts'
                                             ?
-                                                <p className="no-posts">Відсутні пости, які відповідають заданим критеріям :(</p>
+                                                <p className="no-posts">Відсутні збережені пости :(</p>
                                             :
                                             <div className="posts-container">
+                                                <p className="left-title">Збережені пости</p>
                                                 <div className="posts">
-                                                    {posts.map((post) =><OnePost posts={post} key={post.id}/>)}
+                                                    {posts.map((post) =><OnePost posts={post} key={post.id} />)}
                                                 </div>
                                                 <div className="pagination">
                                                     {params.page !== 1 &&  <button onClick={()=>{setParams({...params, page: +params.page - 1})}} className='change-page left'>
@@ -216,4 +160,4 @@ const UserPosts = () => {
     );
 }
 
-export default UserPosts;
+export default UserFavourites;

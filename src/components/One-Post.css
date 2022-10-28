@@ -154,14 +154,23 @@
     font-size: 36px;
 }
 
+.one-post .post-likes-container i{
+    transition: 0.5s;
+    cursor: pointer;    
+}
+
+.one-post .post-likes-container i:hover{
+    color: green;
+}
+
+
+
+
 .one-post .post-likes .fa-thumbs-down, .one-post .post-likes .fa-thumbs-o-down  {
     margin-right: 40px;
     
 }
 
-.one-post .fa-thumbs-down, .one-post .fa-thumbs-o-down, .one-post .fa-thumbs-up, .one-post .fa-thumbs-o-up  {
-    cursor: pointer;    
-}
 
 
 
@@ -169,8 +178,33 @@
     border-top: 1px solid rgb(179, 179, 179);
 }
 
+.one-post .icon-favourites i{
+    margin-top: 5px;
+    font-size: 36px;
+    cursor: pointer;
+    transition: 0.5s;
+}
 
-@media only screen and (min-width: 550px) and (max-width: 1050px){
+.one-post .icon-favourites i:hover{
+    color: green;
+    font-size: 38px;
+}
+
+.one-post .post-locking {
+    margin-top: 6px;
+}
+.one-post .post-locking i{
+
+    font-size: 32px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.one-post .post-locking i:hover{
+    color: green;
+}
+
+@media only screen and (min-width: 570px) and (max-width: 1150px){
     .one-post .post-author {
         padding-left: 10px;
     }
@@ -184,7 +218,9 @@
     }
 }
 
-@media only screen and (max-width: 550px) {
+
+
+@media only screen and (max-width: 570px) {
     .one-post {
         grid-template-rows: auto auto auto auto auto auto auto;
         grid-template-areas: 

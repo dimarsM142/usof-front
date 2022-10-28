@@ -10,7 +10,6 @@ const Comments = (props) =>{
     const [comments, setComments] = useState({});
     const [fetchComments, isCommentsLoading, errorComments] = useFetching(async () => {
         const response = await PostService.getComments(localStorage.getItem('access'), +props.id);
-        console.log(response);
         setComments(response.data);
     })
     useEffect(()=>{
@@ -37,10 +36,15 @@ const Comments = (props) =>{
                 }
 
                 {window.localStorage.getItem('isAuth') === 'true' &&
-                    <div className="comments-create-container">
-                        <p>Знаєте відповідь на запитання?</p>
-                        <CommentCreate id={props.id} fetchComments={fetchComments} />
+                    <div>
+                        {props.locking === 'unlocked' &&
+                            <div className="comments-create-container">
+                                <p>Знаєте відповідь на запитання?</p>
+                                <CommentCreate id={props.id} fetchComments={fetchComments} />
+                            </div>
+                        }
                     </div>
+                    
                 }
             </div>
         </div>

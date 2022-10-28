@@ -11,6 +11,7 @@ const Navigation = (props) => {
         window.localStorage.setItem('isAuth', 'false');
         window.localStorage.setItem('login', '');
         window.localStorage.setItem('ava', '');
+        localStorage.setItem('role', '');
         props.clearRefresh();
         props.setAuth(false);
         setTimeout(()=>{

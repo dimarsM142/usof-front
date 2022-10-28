@@ -9,7 +9,7 @@
     margin: 15px 0px 25px 25px;
 }
 
-.category a{
+.category .title a{
     font-family: 'Comfortaa', cursive;
     color: rgb(0, 0, 0);
     font-size: 32px;
@@ -18,7 +18,7 @@
     transition: 0.5s;
 }
 
-.category a:hover{
+.category .title a:hover{
     padding: 5px 25px;
     background-color: green;
     color: white;
@@ -28,6 +28,34 @@
     margin: 10px 30px;
     color: rgb(82, 82, 82);
 }
+
+.category .admin-functions {
+    display: flex;
+    justify-content: end;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.category .admin-functions a{
+    color: black;
+    margin-right: 30px;
+}
+
+.category .admin-functions i{
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.category .admin-functions .change-category i:hover{
+    color: green;
+}
+
+.category .admin-functions .delete-category i:hover{
+    color: red;
+}
+
+
 
 @media screen and (max-width: 600px) {
     .category a{

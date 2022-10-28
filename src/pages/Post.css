@@ -129,27 +129,12 @@
 .post .post-params {
     grid-area: params;
     display: flex;
-    justify-content: space-between;
-}
-
-.post .post-params .post-comments{
-    padding-left: 30px;
-}
-
-.post .post-params .post-comments a{
-    color: black;
-    font-size: 32px;
-    transition: 0.5s;
-}
-
-.post .post-params .post-comments a:hover{
-    color: green;
-    font-size: 38px;
+    justify-content: flex-start;
 }
 
 .post .post-rating {
     display: flex;
-    padding-right: 20px;
+    margin-right: 60px;
     padding-bottom: 10px;
 }
 
@@ -166,6 +151,35 @@
    font-style: italic;
 }
 
+.post .icon-favourites{
+    margin-right: 100px;
+}
+
+.post .icon-favourites i{
+    margin-top: 5px;
+    font-size: 56px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.post .post-locking {
+    margin-top: 5px;
+    margin-right: 50px;
+}
+.post .post-locking i{
+    font-size: 56px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.post .post-locking i:hover{
+    color: green;
+}
+
+.post .icon-favourites i:hover{
+    color: green;
+    font-size: 58px;
+}
 
 .post .post-likes {
     grid-area: likes;
@@ -182,8 +196,14 @@
     
 }
 
-.post .fa-thumbs-down, .post .fa-thumbs-o-down, .post .fa-thumbs-up, .post .fa-thumbs-o-up  {
+
+.post .post-likes-container i{
+    transition: 0.5s;
     cursor: pointer;    
+}
+
+.post .post-likes-container i:hover{
+    color: green;
 }
 
 .post-container .delete-container {
@@ -345,6 +365,7 @@
     justify-content: center;
 }
 
+
 @media only screen and (min-width: 700px) and (max-width: 1000px){
     
     .post .post-content {
@@ -355,11 +376,34 @@
         font-size: 24px;
     }
     .post .post-params{
-        margin-top: 20px;
+        margin-top: 30px;
     }
     .post .post-rating img {
         width: 46px;
         height: 46px;
+    }
+    
+    .post .post-rating {
+        margin-right: 30px;
+    }
+
+
+    .post .post-locking {
+        margin-top: 0px;
+        margin-right: 20px;
+    }
+    .post .post-locking i{
+        font-size: 42px;
+    }
+    .post .icon-favourites{
+        margin-right: 50px;
+    }
+    .post .icon-favourites i{
+        margin-top: 0px;
+        font-size: 42px;
+    }
+    .post .icon-favourites i:hover{
+        font-size: 42px;
     }
     .post .post-rating p {
         font-size: 28px;
@@ -391,7 +435,7 @@
 }
 
 
-@media only screen and (min-width: 420px) and (max-width: 700px){
+@media only screen and (min-width: 450px) and (max-width: 700px){
     
     .post .post-content {
         margin-right: 20px;
@@ -401,7 +445,7 @@
         font-size: 18px;
     }
     .post .post-params{
-        margin-top: 20px;
+        margin-top: 27px;
     }
     .post .post-rating img {
         width: 46px;
@@ -409,6 +453,32 @@
     }
     .post .post-rating p {
         font-size: 28px;
+    }
+    
+
+    .post .post-rating {
+        margin-right: 20px;
+    }
+
+    .post .icon-favourites{
+        margin-right: 20px;
+    }
+
+
+    .post .icon-favourites i{
+        margin-top: 5px;
+        font-size: 36px;
+    }
+
+    .post .icon-favourites i:hover{
+        font-size: 38px;
+    }
+    .post .post-locking {
+        margin-top: 5px;
+        margin-right: 15px;
+    }
+    .post .post-locking i{
+        font-size: 38px;
     }
     .post .post-likes-container {
         font-size: 36px;
@@ -449,7 +519,7 @@
 
 
 
-@media only screen and (max-width: 420px){
+@media only screen and (max-width: 450px){
     .post {
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-areas: 
@@ -475,6 +545,27 @@
     }
     .post .post-rating p {
         font-size: 30px;
+    }
+
+
+
+    .post .icon-favourites {
+        margin-right: 15px;
+    }
+    .post .icon-favourites i{
+        margin-top: 6px;
+        font-size: 34px;
+    }
+
+    .post .icon-favourites i:hover{
+        font-size: 34px;
+    }
+    .post .post-locking {
+        margin-top: 6px;
+        margin-right: 15px;
+    }
+    .post .post-locking i{
+        font-size: 34px;
     }
     .post .post-likes-container {
         font-size: 32px;

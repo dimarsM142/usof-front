@@ -1,4 +1,4 @@
-.user-info{
+.user{
     margin-top: 120px;
     display: grid;
     width: 400px;
@@ -9,7 +9,7 @@
     margin: 120px auto 100px auto;
 }
 
-.user-info > .header{
+.user > .header{
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     background-color: rgb(0, 161, 0);
@@ -23,7 +23,7 @@
     text-transform: uppercase;
 }
 
-.user-info .user-info-title {
+.user .user-title {
     font-size: 26px;
     font-weight: 700;
     text-transform: uppercase;
@@ -31,57 +31,26 @@
     margin-bottom: 20px;
 }
 
-.user-info > .user-data{
+.user > .user-data{
     display: grid;
     row-gap: 10px;
 }
 
-.user-info .user-info-name {
+.user .user-name {
     margin-left: 40px;
 }
 
-.user-info > .user-data input{
+.user > .user-data input{
     margin: auto;
     margin-bottom: 20px;
 }
 
-.user-info > .user-data button{
+.user > .user-data button{
     margin: auto;
     margin-bottom: 20px;
 }
 
-.user-info .delete-button-container {
-    margin: 200px 0px 20px 180px;
-}
-
-.user-info .delete-button-container button {
-    background-color: rgb(201, 19, 19);
-    width: 200px;
-    height: 40px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #ffffff;
-    border: none;
-    transition: 0.5s;
-    cursor: pointer;
-    
-}
-
-.user-info .delete-button-container button:hover{
-    background-color: rgb(88, 3, 3);
-
-}
-
-
-
-.user-info .delete-button-container button:active{
-    background-color: rgb(201, 19, 19);
-    color: #ffffff;
-    box-shadow: 0px 10px 15px rgb(112, 112, 112);
-}
-
-.user-info .error{
+.user .error{
     color: rgb(197, 0, 0);
     text-align: center;
     opacity: 0;
@@ -93,12 +62,12 @@
     margin-bottom: 40px;
 }
 
-.user-info .result-text{
+.user .result-text{
     text-align: center; 
     margin: 50px 20px 100px 25px;
 }
 
-.user-info .main-text {
+.user .main-text {
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 30px;
@@ -107,7 +76,7 @@
     text-transform: uppercase;
 }
 
-.user-info .second-text {
+.user .second-text {
     font-size: 18px;
 }
 
@@ -121,7 +90,7 @@
     }
 }
 
-.user-info .user-photo {
+.user .user-photo {
     display: grid;
     grid-template-areas: 
     'ava upload'
@@ -129,7 +98,7 @@
     margin: 20px 20px 130px 20px;
 } 
 
-.user-info .user-photo .ava-current {
+.user .user-photo .ava-current {
     grid-area: ava;
     width: 130px;
     height: 130px;
@@ -137,19 +106,19 @@
 
 }
 
-.user-info .user-photo .input-container {
+.user .user-photo .input-container {
     grid-area: upload;
     margin: 0px 0px 35px 0px;   
 }
    
 
-.user-info .user-photo .input-file {
+.user .user-photo .input-file {
     opacity: 0;
     visibility: hidden;
     position: absolute;
 }
 
-.user-info .user-photo .input-file-desc {
+.user .user-photo .input-file-desc {
     width: 220px;
     height: 40px;
     background: green;
@@ -163,17 +132,17 @@
     transition: 0.5s;
 }
 
-.user-info .user-photo .input-file-desc:hover {
+.user .user-photo .input-file-desc:hover {
     background-color: rgb(23, 88, 3);
 }
 
-.user-info .user-photo .input-file-desc:active {
+.user .user-photo .input-file-desc:active {
     background-color: rgb(0, 150, 12);
     color: white;
     box-shadow: 10px 15px 15px rgb(112, 112, 112);
 }
    
-.user-info .user-photo .input-file-icon {
+.user .user-photo .input-file-icon {
     height: 40px;
     width: 40px;
     margin-right: 15px;
@@ -184,22 +153,22 @@
     font-size: 26px;
 }
    
-.user-info .user-photo .input-file-text {
+.user .user-photo .input-file-text {
     margin-top: 1px;
 }
    
-.user-info .user-photo > button {
+.user .user-photo > button {
     width: 220px;
     grid-area: submit;
 }
 
-.user-info .user-posts-favourite{
+.user .user-posts-favourite{
     margin-right: 50px;
     margin-top: 30px;
     text-align: right;
 }
 
-.user-info .user-posts-favourite a{
+.user .user-posts-favourite a{
     color: white;
     text-decoration: none;
     background-color: green;
@@ -208,17 +177,17 @@
     transition: 0.5s;
 }
 
-.user-info .user-posts-favourite a:hover{
+.user .user-posts-favourite a:hover{
     background-color: rgb(23, 88, 3);
 }
 
-.user-info .user-posts-favourite a:active{
+.user .user-posts-favourite a:active{
     background-color: rgb(0, 150, 12);
     color: #ffffff;
     box-shadow: 0px 10px 15px rgb(112, 112, 112);
 }
 
-.user-info > .loading-text {
+.user > .loading-text {
     color: rgb(0, 0, 0);
     padding: 20px 20px;
     text-align: center;
@@ -226,13 +195,13 @@
     margin-bottom: 30px;
 }
 
-.user-info > .loader{
+.user > .loader{
     margin: auto;
     margin-bottom: 40px;   
 }
  
 
-.user-info > .deleting-text {
+.user > .deleting-text {
     color: rgb(0, 0, 0);
     padding: 20px 0px;
     text-align: center;
@@ -240,93 +209,28 @@
     margin-bottom: 30px;
 }
 
-.user-info > .buttons-delete {
-   display: flex;
-   justify-content: space-around;
-   margin-bottom: 100px;
-   margin-top: 60px;
+.user .select-create{
+    width: 330px;
+    margin: auto;
+    margin-bottom: 20px;
 }
 
-.user-info > .buttons-delete button{
-    width: 180px;
-    height: 40px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #ffffff;
-    border: none;
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.user-info > .buttons-delete .stay{
-    background-color: green;
-}
-
-.user-info > .buttons-delete .delete-profile{
-    background-color: rgb(201, 19, 19);
-}
-
-.user-info > .buttons-delete  .stay:hover{
-    background-color: rgb(23, 88, 3);
-}
-
-.user-info > .buttons-delete  .delete-profile:hover{
-    background-color: rgb(88, 3, 3);
-}
-
-.user-info > .buttons-delete .stay:active{
-    background-color: rgb(0, 150, 12);
-    color: #ffffff;
-    box-shadow: 0px 10px 15px rgb(112, 112, 112);
-}
-
-.user-info > .buttons-delete .delete-profile:active{
-    background-color: rgb(201, 19, 19);
-    color: #ffffff;
-    box-shadow: 0px 10px 15px rgb(112, 112, 112);
-}
-
-
-.user-info .admin-link {
-    text-align: center;
-    margin-top: 100px;
-}
-
-.user-info .admin-link a{
-    color: white;
-    text-decoration: none;
-    background-color: green;
-    padding: 10px 25px;
-    font-size: 24px;
-    transition: 0.5s;
-}
-
-.user-info .admin-link a:hover{
-    background-color: rgb(23, 88, 3);
-}
-
-.user-info .admin-link a:active{
-    background-color: rgb(0, 150, 12);
-    color: #ffffff;
-    box-shadow: 0px 10px 15px rgb(112, 112, 112);
-}
 
 
 @media only screen and (min-width: 340px) and (max-width: 410px){
-    .user-info{
+    .user{
         width: 320px;
     }
     
-    .user-info > .header{
+    .user > .header{
         font-size: 22px;
     }
     
-    .user-info .user-info-title {
+    .user .user-title {
         font-size: 20px;
     }
     
-    .user-info .user-photo {
+    .user .user-photo {
         grid-template-areas: 
         'ava'
         'upload'
@@ -336,70 +240,58 @@
         row-gap: 10px;
     } 
     
-    .user-info > .user-data input{
+    .user > .user-data input{
         width: 150px;
         margin: auto;
     }
 
-    .user-info > .user-data input:focus{
+    .user > .user-data input:focus{
         width: 190px;
     }
-    .user-info > .user-data button{
+    .user > .user-data button{
         width: 270px;
         margin-top: 40px;
     }
     
-    
-    .user-info .delete-button-container {
-        margin: 120px auto 50px auto;
-    }
-
-    .user-info .delete-button-container button {
-        width: 200px;
-        
-    }
-    .user-info .user-info-name {
+    .user .user-name {
         margin-left: 40px;
     }
-    .user-info .user-photo .ava-current {
+    .user .user-photo .ava-current {
 
         margin: auto;
         margin-bottom: 30px;
     }
-    
-    
-    .user-info .admin-link a{
-        padding: 10px 15px;
-        font-size: 20px;
+    .user .select-create{
+        width: 230px;
+        margin: auto;
+        margin-bottom: 20px;
     }
-
-
 }
 
 @media only screen and (max-width: 340px){
     
-    .user-info .user-posts-favourite {
+    .user .user-posts-favourite {
         text-align: center;
         margin-right: 0px;
     }
 
-    .user-info .admin-link a{
+    .user .admin-link a{
         padding: 10px 5px;
         font-size: 18px;
     }
-    .user-info{
+    .user{
         width: 250px;
     }
     
-    .user-info > .header{
+    .user > .header{
         font-size: 20px;
     }
     
-    .user-info .user-info-title {
+    .user .user-title {
         font-size: 20px;
     }
     
-    .user-info .user-photo {
+    .user .user-photo {
         grid-template-areas: 
         'ava'
         'upload'
@@ -409,46 +301,50 @@
         row-gap: 10px;
     } 
     
-    .user-info > .user-data input{
+    .user > .user-data input{
         width: 120px;
         margin: auto;
     }
 
-    .user-info > .user-data input:focus{
+    .user > .user-data input:focus{
         width: 140px;
     }
-    .user-info > .user-data button{
+    .user > .user-data button{
         width: 120px;
         margin-top: 40px;
     }
     
     
-    .user-info .delete-button-container {
+    .user .delete-button-container {
         margin: 120px auto 50px auto;
     }
 
-    .user-info .delete-button-container button {
+    .user .delete-button-container button {
         width: 120px;
         
     }
-    .user-info .user-info-name {
+    .user .user-name {
         margin-left: 40px;
     }
-    .user-info .user-photo .ava-current {
+    .user .user-photo .ava-current {
         width: 100px;
         height: 100px;
         margin: auto;
         margin-bottom: 30px;
     }
 
-    .user-info .user-photo > button {
+    .user .user-photo > button {
         width: 200px;
     }
 
-    .user-info .user-photo .input-file-desc {
+    .user .user-photo .input-file-desc {
         width: 200px;
     }
-
+    .user .select-create{
+        width: 180px;
+        margin: auto;
+        margin-bottom: 20px;
+    }
 }
 
   

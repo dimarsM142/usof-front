@@ -5,7 +5,8 @@ import { useNavigate, Link } from "react-router-dom";
 import MyInput from "../components/UI/MyInput.js";
 import MyButton from "../components/UI/MyButton.js";
 import MyLoader from "../components/UI/MyLoader.js";
-import './User-info.css';
+import Select from "react-select";
+import './Admin-changeAccount.css';
 
 function checkEmail(email){
     let arrOfAt = email.match(/@/g);
@@ -19,91 +20,41 @@ function checkEmail(email){
 }
 
 
-const UserInfo = (props) => {
+const ChangeUser = () => {
     const router = useNavigate();
     const [info, setInfo] = useState({});
-    const [pictureLink, setPictureLink] = useState({});
     const [errorText, setErrorText] = useState('');
     const [errorPhoto, setErrorPhoto] = useState('');
     const [curTimeoutID, setCurTimeoutID] = useState();
     const [successRes, setSuccessRes] = useState(false);
-    const [deleteProfile, setDeleteProfile] = useState(false);
     const [selectedFile, setSelectedFile] = useState();
 	const [isFilePicked, setIsFilePicked] = useState(false);
 
-    const [fetchUserAva, isAvatarLoading, avatarError] = useFetching(async () => {
-        const response = await PostService.getUserAvatar(localStorage.getItem('access'));
-        setPictureLink(response.data.picture);
-        if(response.data.picture !== localStorage.getItem('ava')){
-            localStorage.setItem('ava', response.data.picture);
-            window.location.reload();
-        }
-    })
     const [fetchUserInfo, isPostsLoading, userError] = useFetching(async () => {
-        const response = await PostService.getUserInfo(localStorage.getItem('access'));
-        if(window.location.href !== `/${localStorage.getItem('login')}/info`){
-            router(`/${localStorage.getItem('login')}/info`);
-        }
+        const response = await PostService.getUserByLogin(localStorage.getItem('access'), window.location.pathname.slice(window.location.pathname.indexOf('change-user/') + 12));
         setInfo(response.data[0]);
     })
     const [fetchChangeUser, isChangeLoading, changeUserError] = useFetching(async () => {
-        const response = await PostService.changeUserInfo(localStorage.getItem('access'), info);
-        localStorage.setItem('login', info.login);
+        const response = await PostService.changeUserInfoAdmin(localStorage.getItem('access'), info);
+        
         setSuccessRes(true);
         setTimeout(()=>{
             router(`/posts`)
         }, 3000);
     })
 
-    const [fetchDeleteUser, isDeleteLoading, deleteUserError] = useFetching(async () => {
-        const response = await PostService.deleteUserInfo(localStorage.getItem('access'), info);
-        localStorage.setItem('login', '');
-        localStorage.setItem('isAuth', 'false');
-        localStorage.setItem('access', '');
-        localStorage.setItem('refresh', '');
-        localStorage.setItem('role', '');
-        props.clearRefresh();
-        props.setAuth(false);
-        setTimeout(()=>{
-            router(`/login`)
-        },50)
-    })
     const [fetchChangeAva, isChangeAvaLoading, errorAvaChange] = useFetching(async () => {
-        const response = await PostService.patchUserAvatar(localStorage.getItem('access'), selectedFile);
-        fetchUserAva();
+        const response = await PostService.changeUserAvatar(localStorage.getItem('access'), info.userID,selectedFile);
+        setSuccessRes(true);
+        setTimeout(()=>{
+            router(`/posts`)
+        }, 3000);
         
     })
 
     useEffect(() =>{
         fetchUserInfo();
-        fetchUserAva();
     }, []);
-
-    useEffect(()=>{
-        if(userError){
-            localStorage.setItem('isAuth', 'false');
-            localStorage.setItem('access', '');
-            localStorage.setItem('refresh', '');
-            localStorage.setItem('role', '');
-            props.clearRefresh();
-            props.setAuth(false);
-            setTimeout(()=>{
-                router(`/login`)
-            },50)
-        }
-        else if(avatarError){
-            localStorage.setItem('isAuth', 'false');
-            localStorage.setItem('access', '');
-            localStorage.setItem('refresh', '');
-            localStorage.setItem('role', '');
-            props.clearRefresh();
-            props.setAuth(false);
-            setTimeout(()=>{
-                router(`/login`)
-            },50)
-        }
-    }, [avatarError, userError])
-    
 
     useEffect(()=>{
         if(changeUserError){
@@ -122,16 +73,15 @@ const UserInfo = (props) => {
                 setTimeout(()=>{router(`/error`)},50)
             }
         }
-        if(deleteUserError || errorAvaChange) {
+        if(errorAvaChange || userError) {
             setTimeout(()=>{router(`/error`)},50)
         }
-    },[changeUserError, deleteUserError, errorAvaChange]);
+    },[changeUserError, errorAvaChange, userError]);
 
     function changeData(e){
-        clearInterval(curTimeoutID);
         e.preventDefault();
         clearTimeout(curTimeoutID);
-        e.preventDefault();
+        
         if(!info.login){
             setErrorText('Введіть логін');
             const id = setTimeout(()=>{setErrorText('')}, 2000);
@@ -152,12 +102,6 @@ const UserInfo = (props) => {
         }       
         
     }
-
-    function deleteYourAccount(e){
-        e.preventDefault();
-        setDeleteProfile(true);
-    }
-
 
     function changeHandler(e){
         clearTimeout(curTimeoutID);
@@ -185,28 +129,14 @@ const UserInfo = (props) => {
             setCurTimeoutID(id);
         }
     }
-    if(isPostsLoading || isAvatarLoading || isChangeAvaLoading || isChangeLoading){
+    if(isPostsLoading || isChangeAvaLoading || isChangeLoading){
         return (
             <div>
-                <div className="user-info">
+                <div className="user">
                     <p className="header">Зміна акаунту</p>
                     <p className="loading-text">Відбувається надсилання або завантаження даних. Зачекайте...</p>
                     <div className="loader">
                         <MyLoader />
-                    </div>
-                </div>
-            </div>
-        );
-    }
-    else if(deleteProfile){
-        return (
-            <div>
-                <div className="user-info">
-                    <p className="header">Зміна акаунту</p>
-                    <p className="deleting-text">Ви впевнені що хочете видалити акаунт?</p>
-                    <div className="buttons-delete">
-                        <button className='stay' onClick={e=>{e.preventDefault(); setDeleteProfile(false)}}>Повернутись назад</button>
-                        <button className="delete-profile" onClick={e=>{e.preventDefault(); fetchDeleteUser();}}>Видалити акаунт</button>
                     </div>
                 </div>
             </div>
@@ -217,7 +147,7 @@ const UserInfo = (props) => {
             <div>
                 {successRes 
                     ?
-                    <div className="user-info">
+                    <div className="user">
                         <p className="header">Зміна акаунту</p>
                         <div className="result-text">
                             <p className="main-text">Дані акаунту успішно змінені.</p>
@@ -225,11 +155,11 @@ const UserInfo = (props) => {
                         </div> 
                     </div>
                     :
-                    <div className="user-info">
+                    <div className="user">
                         <p className="header">Зміна акаунту</p>
-                        <p className="user-info-title">Зміна фото профілю</p>
+                        <p className="user-title">Зміна фото профілю</p>
                         <div className="user-photo">
-                            <img src={pictureLink} alt="ava" className="ava-current"/>
+                            <img src={info.picture} alt="ava" className="ava-current"/>
                             <div className="input-container">
                                 <input type="file" name="file" id='input-file' className="input-file" onChange={changeHandler} />
                                 <label htmlFor="input-file" className="input-file-desc">
@@ -245,13 +175,13 @@ const UserInfo = (props) => {
                                     
                                 </label>
                             </div>
-                            <MyButton onClick={handleSubmission}>Завантажити фото</MyButton>
+                            <MyButton onClick={handleSubmission}>Змінити фото</MyButton>
                             
                         </div>
                         {errorPhoto && <p className="error">{errorPhoto}</p>}
-                        <p className="user-info-title">Зміна даних акаунту</p>
+                        <p className="user-title">Зміна даних акаунту</p>
                         <div className="user-data">
-                            <p className="user-info-name">логін:</p>
+                            <p className="user-name">логін:</p>
                             <MyInput 
                                 type="text"
                                 placeholder="логін" 
@@ -281,7 +211,7 @@ const UserInfo = (props) => {
                                     }
                                 }}
                             /> 
-                            <p className="user-info-name">електронна пошта:</p>
+                            <p className="user-name">електронна пошта:</p>
                             <MyInput 
                                 type="text"
                                 placeholder="пошта" 
@@ -303,7 +233,7 @@ const UserInfo = (props) => {
                                     }
                                 }}
                             /> 
-                            <p className="user-info-name">повне ім'я:</p>
+                            <p className="user-name">повне ім'я:</p>
                             <MyInput 
                                 type="text"
                                 placeholder="повне ім'я" 
@@ -333,20 +263,37 @@ const UserInfo = (props) => {
                                     }
                                 }}
                             /> 
+                            <p className="user-name">роль:</p>
+                            <Select 
+                                className='select-create' 
+                                name="roles" 
+                                defaultValue={{value: 'user', label: 'Користувач'}}
+                                isClearable={false}
+                                isSearchable={false}
+                                placeholder='Категорії'
+                                options={[{value: 'user', label: 'Користувач'}, {value: 'admin', label: 'Адміністратор'}]}
+                                onChange={(e)=>{setInfo({...info, role: e.value});}} 
+                                theme={theme => ({
+                                    ...theme,
+                                    colors: {
+                                        primary: 'green',
+                                        primary25: 'green',
+                                        neutral0: '#FFFFFF',
+                                        neutral10: 'rgba(0, 0, 0, 0.2)',
+                                        neutral20: 'rgba(0, 0, 0, 0.5)',
+                                        neutral30: 'rgba(0, 0, 0, 0.3)',
+                                        neutral40: 'rgb(0, 125, 0)',
+                                        neutral50: 'rgba(0, 0, 0, 0.7)',
+                                        neutral80: 'green',
+                                        danger: 'red',
+                                        dangerLight: 'rgba(255, 0, 0, 0.2)',
+                                    }
+                                    
+                                })}
+                            />
                             <MyButton onClick={changeData}>Змінити</MyButton>
                         </div>
                         {errorText && <p className="error">{errorText}</p>}
-                        <div className="user-posts-favourite">
-                            <Link to={{pathname: `/${localStorage.getItem('login')}/favourite`}}>Збережені</Link>
-                        </div>
-                        {localStorage.getItem('role')=== 'admin' &&
-                            <div className="admin-link">
-                                 <Link to={{pathname: `/admin/users`}}>Операції з користувачами</Link>
-                            </div>
-                        }
-                        <div className="delete-button-container">
-                            <button onClick={deleteYourAccount}>Видалити акаунт</button>
-                        </div>
                     </div>
                 }
             </div>
@@ -355,4 +302,4 @@ const UserInfo = (props) => {
    
 }
 
-export default UserInfo;
+export default ChangeUser;

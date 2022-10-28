@@ -18,12 +18,14 @@ const Login = (props) => {
         localStorage.setItem('ava', response.data.picture);
         router('/posts');
     })
+
     const [fetchLogin, isPostsLoading, errorLogin] = useFetching(async () => {
             const response = await PostService.login(dataInputed.login, dataInputed.password);
 
             localStorage.setItem('access', response.data.AccessToken);
             localStorage.setItem('refresh', response.data.RefreshToken);
             localStorage.setItem('isAuth', 'true');
+            localStorage.setItem('role', response.data.role);
             props.setAuth(true);
             props.refreshToken();
             fetchUserAva();

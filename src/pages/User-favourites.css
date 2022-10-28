@@ -1,43 +1,43 @@
-.user-posts{
+.user-favourite-posts {
     margin-top: 120px;
     display:flex;
     margin-bottom: 100px;
 }
 
 
-.user-posts .left-part{
+.user-favourite-posts .left-part{
     width: 500px;
     transition: 1s;
 }
 
-.user-posts .user-posts-info {
+.user-favourite-posts .user-posts-info {
     margin-left: 40px;
 }
 
-.user-posts .user-posts-info {
+.user-favourite-posts .user-posts-info {
     display: flex;
     margin-bottom: 10px;
 }
 
-.user-posts .user-posts-info > img {
+.user-favourite-posts .user-posts-info > img {
     width: 150px;
     height: 150px;
     border-radius: 75px;
 }
 
-.user-posts .user-posts-info .login {
+.user-favourite-posts .user-posts-info .login {
    font-size: 28px;
    color: green;
    font-family: 'Comfortaa', cursive;
 }
 
-.user-posts .user-posts-info .user-rating {
+.user-favourite-posts .user-posts-info .user-rating {
     display: flex;
     margin-left: 10px;
     margin-top: 20px;
 }
 
-.user-posts .user-posts-info .user-rating p{
+.user-favourite-posts .user-posts-info .user-rating p{
     margin-top: 12px;
     margin-left: 7px;
     font-size: 25px;
@@ -47,83 +47,21 @@
 
 }
 
-.user-posts .user-posts-info .full-name {
+.user-favourite-posts .user-posts-info .full-name {
     color: rgb(109, 109, 109);
     margin-left: 20px;
 }
 
-.user-posts .user-posts-favourite{
-    margin-left: 50px;
-    margin-top: 30px;
-}
-
-.user-posts .user-posts-favourite a{
-    color: white;
-    text-decoration: none;
-    background-color: green;
-    padding: 5px 20px;
-    font-size: 20px;
-    transition: 0.5s;
-}
-
-.user-posts .user-posts-favourite a:hover{
-    background-color: rgb(23, 88, 3);
-}
-
-.user-posts .user-posts-favourite a:active{
-    background-color: rgb(0, 150, 12);
-    color: #ffffff;
-    box-shadow: 0px 10px 15px rgb(112, 112, 112);
-}
-
-.user-posts .status-title {
-    margin-top: 80px;
-}
-
-.user-posts .status-title, .user-posts .sort-title{
+.user-favourite-posts .left-title {
     text-align: center;
-    text-transform: uppercase;
-    font-size: 22px;
-    margin-bottom: 5px;
-    margin-left: 15px;
-    border: 2px solid rgb(37, 148, 37);
-    border-radius: 5px;
-
-
-}
-
-.user-posts .status-content, .user-posts .sort-content{
-    display: flex;
-    justify-content: space-around;
-    margin: 0px 30px;
-    font-size: 18px;
-    -webkit-touch-callout: none; 
-    -webkit-user-select: none; 
-    -moz-user-select: none; 
-    -ms-user-select: none;  
-    user-select: none;
-}
-
-.user-posts .status-content p, .user-posts .sort-content p {
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.user-posts .status-content p:hover, .user-posts .sort-content p:hover{
-    font-weight: 700;
+    margin-bottom: 50px;
     color: green;
-}
-
-.user-posts .status-content .active, .user-posts .sort-content .active{
     font-weight: 700;
-    color: green;
+    font-size: 42px;
+    font-family: 'Comfortaa', cursive;
 }
 
-.user-posts .status-content {
-    margin-bottom: 80px;
-}
-
-.user-posts .center-part{
+.user-favourite-posts .center-part{
     width: 100%;
     margin-left: 30px;
     margin-right: 70px;
@@ -131,13 +69,13 @@
 }
 
 
-.user-posts .post-create{
+.user-favourite-posts .post-create{
     margin-left: 20px;
     margin: 0px 0 50px 20px;
 }
 
 
-.user-posts .post-create a{
+.user-favourite-posts .post-create a{
     text-decoration: none;
     text-transform: uppercase;
     color: white;
@@ -153,7 +91,7 @@
     user-select: none;
 }
 
-.user-posts .post-create a:hover{
+.user-favourite-posts .post-create a:hover{
     color: rgb(255, 255, 255);
     background-color: rgb(41, 177, 0);
     padding: 5px 35px;
@@ -161,19 +99,19 @@
 
 }
 
-.user-posts .post-create p{
+.user-favourite-posts .post-create p{
     font-size: 16px;
     padding-bottom: 15px;
 }
 
-.user-posts .pagination {
+.user-favourite-posts .pagination {
     margin-top: 20px;
     margin-right: 40px;
     display: flex;
     justify-content: right;
 }
 
-.user-posts .change-page {
+.user-favourite-posts .change-page {
     color: black;
     width: 50px;
     height: 50px;
@@ -183,7 +121,7 @@
     transition: 0.5s;
 }
 
-.user-posts .number-page{
+.user-favourite-posts .number-page{
     text-align: center;
     height: 43px;
     width: 50px;
@@ -198,21 +136,21 @@
     user-select: none;
 }
 
-.user-posts .right, .user-posts .left {
+.user-favourite-posts .right, .user-favourite-posts .left {
     cursor: pointer;
 }
 
-.user-posts .right:hover, .user-posts .left:hover {
+.user-favourite-posts .right:hover, .user-favourite-posts .left:hover {
     color: white;
     background-color: rgb(0, 0, 0);
 }
 
-.user-posts .change-page svg{
+.user-favourite-posts .change-page svg{
     width: 40px;
     height: 40px;
 }
 
-.user-posts .no-posts{
+.user-favourite-posts .no-posts{
     text-align: center;
     color: green;
     font-weight: 700;
@@ -221,49 +159,40 @@
 }
 
 @media only screen and (min-width: 1305px) and (max-width: 1370px) {
-    .user-posts .title{
+    .user-favourite-posts .title{
         font-size: 36px;
     }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1305px) {
-    .user-posts .status-title, .user-posts .sort-title{
-        margin-right: 40px;
-        margin-left: 40px;   
-    }
-    .user-posts{
+    .user-favourite-posts {
         display: block;
     }
-    .user-posts .left-part{
+    .user-favourite-posts .left-part{
         width:auto;
         margin-bottom: 60px;
         margin-left: 20px;
     }
-    .user-posts .center-part{
+    .user-favourite-posts .center-part{
         width: auto;
         margin-right: 30px;
     }    
 }
 
 @media only screen and (min-width: 420px) and (max-width: 600px) {
-    .user-posts .status-title, .user-posts .sort-title{
-        margin-right: 20px;
-        margin-left: 20px;   
-    }
-    .user-posts .user-posts-info .login {
+    .user-favourite-posts .user-posts-info .login {
         font-size: 20px;
         color: green;
-        font-family: 'Comfortaa', cursive;
      }
-    .user-posts{
+    .user-favourite-posts {
         display: block;
     }
-    .user-posts .left-part{
+    .user-favourite-posts .left-part{
         width: auto;
         margin-bottom: 60px;
         margin-left: 0px;
     }
-    .user-posts .center-part{
+    .user-favourite-posts .center-part{
         width: auto;
         margin-left: 5px;
         margin-right: 5px;
@@ -271,43 +200,39 @@
 }
 
 @media only screen and (max-width: 420px) {
-    .user-posts .user-posts-favourite{
-        text-align: center;
-        margin-left: 0px;
+
+    .user-favourite-posts .left-title {
+        font-size: 24px;
     }
-    .user-posts .status-title, .user-posts .sort-title{
-        margin-right: 10px;
-        margin-left: 10px;   
-    }
-    .user-posts .user-posts-info .login {
+    .user-favourite-posts .user-posts-info .login {
         font-size: 20px;
         color: green;
         font-family: 'Comfortaa', cursive;
     }
-    .user-posts{
+    .user-favourite-posts {
         display: block;
     }
-    .user-posts .left-part{
+    .user-favourite-posts .left-part{
         width: auto;
         margin-bottom: 60px;
         margin-left: 0px;
     }
-    .user-posts .center-part{
+    .user-favourite-posts .center-part{
         width: auto;
         margin-left: 5px;
         margin-right: 5px;
     }   
-    .user-posts .user-posts-info > img {
+    .user-favourite-posts .user-posts-info > img {
         width: 80px;
         height: 80px;
         border-radius: 50px;
     } 
-    .user-posts .user-posts-info .login {
+    .user-favourite-posts .user-posts-info .login {
         font-size: 18px;
         color: green;
         font-family: 'Comfortaa', cursive;
     }
-    .user-posts .user-posts-info {
+    .user-favourite-posts .user-posts-info {
         margin-left: 5px;
     }
      

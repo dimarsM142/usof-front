@@ -11,6 +11,9 @@ const OnePost = (props) =>{
     const [likes, setLikes] = useState([]);
     const [isLiked, setIsLiked] = useState('');
     const [type, setType] = useState('');
+    const [favourites, setFavourites] = useState([]);
+    const [isFavourite, setIsFavourite] = useState('');
+    const [locking, setLocking] = useState(props.posts.locking);
 
     const [fetchLikes, isLikesLoading, errorLikes] = useFetching(async () => {
         const response = await PostService.getLikesByPostID(localStorage.getItem('access'), props.posts.id);
@@ -18,14 +21,28 @@ const OnePost = (props) =>{
             setLikes(response.data);
         }
     })
-
+    const [fetchChangeLocking, isChangeLocking, errorChangeLocking] = useFetching(async () => {
+        const response = await PostService.patchPostLocking(localStorage.getItem('access'), props.posts.id);
+    })
     const [fetchCreateLikes, isCreateLikesLoading, errorCreateLikes] = useFetching(async () => {
-
         const response = await PostService.createLikesByPostID(localStorage.getItem('access'), props.posts.id, type);
     })
     const [fetchDeleteLikes, isDeleteLikesLoading, errorDeleteLikes] = useFetching(async () => {
         const response = await PostService.deleteLikesByPostID(localStorage.getItem('access'), props.posts.id);
     })
+    const [fetchFavourites, isFavouritesLoading, errorFavourites] = useFetching(async () => {
+        const response = await PostService.getFavouritesByPostID(localStorage.getItem('access'), props.posts.id);
+        if(response.data.message !== '0 favourites on this post'){
+            setFavourites(response.data);
+        }
+    })
+    const [fetchCreateFavourites, isCreateFavouriteLoading, errorCreateFavourite] = useFetching(async () => {
+        const response = await PostService.createFavouritesByPostID(localStorage.getItem('access'), props.posts.id);
+    })
+    const [fetchDeleteFavourite, isDeleteFavouriteLoading, errorDeleteFavourite] = useFetching(async () => {
+        const response = await PostService.deleteFavouritesByPostID(localStorage.getItem('access'), props.posts.id);
+    })
+    
     function likeFoo(e){
         e.preventDefault();
         if(localStorage.getItem('isAuth') !== 'true'){
@@ -73,10 +90,10 @@ const OnePost = (props) =>{
     }
 
     useEffect(()=>{
-        if(errorLikes || errorCreateLikes || errorDeleteLikes) {
+        if(errorLikes || errorCreateLikes || errorDeleteLikes || errorFavourites || errorCreateFavourite || errorDeleteFavourite || errorChangeLocking) {
             router('/error');
         }
-    },[errorLikes, errorDeleteLikes, errorCreateLikes]);
+    },[errorLikes, errorDeleteLikes, errorCreateLikes, errorFavourites, errorCreateFavourite, errorDeleteFavourite, errorChangeLocking]);
 
     useEffect(()=>{
         if(type && !isDeleteLikesLoading) {
@@ -85,7 +102,11 @@ const OnePost = (props) =>{
     }, [type, isDeleteLikesLoading]);
 
     useEffect(()=>{
-        fetchLikes();
+
+        if(localStorage.getItem('isAuth') === 'true'){
+            fetchLikes();
+            fetchFavourites();
+        }
     }, []);
 
     useEffect(()=>{
@@ -99,6 +120,42 @@ const OnePost = (props) =>{
         };
     }, [likes]);
 
+    useEffect(()=>{
+        if(favourites.length !== 0) {
+            for(let i = 0; i < favourites.length; i++){
+                if(favourites[i].whoAddToFavorite === localStorage.getItem('login')){
+                    setIsFavourite(true);
+                    break;
+                }
+            }
+        };
+    }, [favourites]);
+
+    function changeFavourite(e){
+        e.preventDefault();
+        if(localStorage.getItem('isAuth') !== 'true'){
+            router('/login');
+            return;
+        }
+        if(e.currentTarget.className === 'fa fa-star'){
+            e.currentTarget.setAttribute('class', 'fa fa-star-o');
+            fetchDeleteFavourite();
+        }
+        else if(e.currentTarget.className === 'fa fa-star-o'){
+            e.currentTarget.setAttribute('class', 'fa fa-star');
+            fetchCreateFavourites();
+        }
+    }
+    function lockingFoo(e) {
+        e.preventDefault();
+        if(locking === 'unlocked'){
+            setLocking('locked');
+        }
+        else if(locking === 'locked'){
+            setLocking('unlocked');
+        }
+        fetchChangeLocking();
+    }
     return(
         <div className="one-post">
             <div className='post-author'>
@@ -135,13 +192,36 @@ const OnePost = (props) =>{
             <div className="post-params">
                 <div className="post-comments">   
                     <Link to={{pathname: `/posts/${props.posts.id}`}}><i className="fa fa-comments" aria-hidden="true"></i></Link>
+                    
                 </div>
+                <div className="icon-favourites">
+                    {isFavourite === true 
+                        ?
+                        <i onClick={changeFavourite} className="fa fa-star" aria-hidden="true"></i>
+                        :
+                        <i onClick={changeFavourite} className="fa fa-star-o" aria-hidden="true"></i>
+                    }
+                </div>
+                {localStorage.getItem('role') === 'admin' &&
+                    <div>
+                    {locking === 'unlocked' 
+                        ?
+                        <div className="post-locking">
+                            <i className="fa fa-check-square" onClick={lockingFoo} aria-hidden="true"></i>
+                        </div>
+                        :
+                        <div className="post-locking">
+                            <i className="fa fa-minus-square" onClick={lockingFoo} aria-hidden="true"></i>
+                        </div>
+                    }
+                    </div>
+                   
+                }
+               
                 <div className="post-rating">
                     <img src='https://cdn-icons-png.flaticon.com/128/3163/3163706.png' alt='txt' />
                     <p>{props.posts.rating}</p>
-                </div>
-                
-                
+                </div>                
             </div>
 
             {isLiked !== '' 

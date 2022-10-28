@@ -8,7 +8,7 @@ const OneComment = (props) =>{
     const [likes, setLikes] = useState([]);
     const [isLiked, setIsLiked] = useState('');
     const [type, setType] = useState('');
-
+    const [locking, setLocking] = useState(props.comment.locking);
     const router = useNavigate();
     function deletePost(e){
         e.preventDefault();
@@ -33,7 +33,9 @@ const OneComment = (props) =>{
     const [fetchDeleteLikes, isDeleteLikesLoading, errorDeleteLikes] = useFetching(async () => {
         const response = await PostService.deleteLikesByCommentID(localStorage.getItem('access'), props.comment.id);
     })
-    
+    const [fetchChangeLocking, isChangeLocking, errorChangeLocking] = useFetching(async () => {
+        const response = await PostService.patchCommentLocking(localStorage.getItem('access'), props.comment.id);
+    })
     function likeFoo(e){
         e.preventDefault();
         if(localStorage.getItem('isAuth') !== 'true'){
@@ -111,7 +113,16 @@ const OneComment = (props) =>{
         };
     }, [likes]);
 
-
+    function lockingFoo(e) {
+        e.preventDefault();
+        if(locking === 'unlocked'){
+            setLocking('locked');
+        }
+        else if(locking === 'locked'){
+            setLocking('unlocked');
+        }
+        fetchChangeLocking();
+    }
     return(
         <div className="one-comment">
             <div className="comment-author">
@@ -125,6 +136,22 @@ const OneComment = (props) =>{
             <div className="comment-rating">
                 <img src='https://cdn-icons-png.flaticon.com/128/3163/3163706.png' alt='txt' />
                 <p>{props.comment.rating}</p>
+            </div>
+            <div className="comment-locking-container">
+                {localStorage.getItem('role') === 'admin' &&
+                    <div>
+                        {locking === 'unlocked' 
+                            ?
+                            <div className="comment-locking">
+                                <i className="fa fa-check-square" onClick={lockingFoo} aria-hidden="true"></i>
+                            </div>
+                            :
+                            <div className="comment-locking">
+                                <i className="fa fa-minus-square" onClick={lockingFoo} aria-hidden="true"></i>
+                            </div>
+                        }
+                    </div>
+                }
             </div>
             {isLiked !== '' 
                 ?
@@ -155,9 +182,11 @@ const OneComment = (props) =>{
                     <i onClick={deletePost} className="fa fa-times-circle-o" aria-hidden="true"></i>
                 </div>
                 :
-                <div className="delete-comment">
-                </div>
-            
+                    <div className="delete-comment">
+                        {localStorage.getItem('role') === 'admin' &&
+                            <i onClick={deletePost} className="fa fa-times-circle-o" aria-hidden="true"></i>
+                        }
+                    </div>
             }
         </div>
     );

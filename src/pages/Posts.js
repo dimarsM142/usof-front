@@ -17,9 +17,9 @@ const Posts = () => {
     const [fetchPosts, isPostsLoading, errorPosts] = useFetching(async () => {
         const response = await PostService.getPosts(localStorage.getItem('access'), params);
         if(!response.data.message){
-            
             if(isNext === 10000000000000){
                 const responseNext = await PostService.getPosts(localStorage.getItem('access'), params, params.page + 1);
+                
                 if(responseNext.data.message || responseNext.data.length === 0){
                     setIsNext(params.page);
                 } 

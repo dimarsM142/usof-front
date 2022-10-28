@@ -143,7 +143,22 @@ export default class PostService {
         
         return response;
     }
-
+    static async patchPostLocking(token, id){
+        const response = await axios.patch(
+            `https://us0f-backend.herokuapp.com/api/posts/${id}/locking`,
+            {},
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer '  + token}});
+        
+        return response;
+    }
+    static async patchCommentLocking(token, id){
+        const response = await axios.patch(
+            `https://us0f-backend.herokuapp.com/api/comments/${id}/locking`,
+            {},
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer '  + token}});
+        
+        return response;
+    }
     static async getComments(token, id){
         const response = await axios.get(
             `https://us0f-backend.herokuapp.com/api/posts/${id}/comments`,
@@ -159,6 +174,35 @@ export default class PostService {
         
         return response;
     }
+    static async getCategoryByID(token, id){
+        const response = await axios.get(
+            `https://us0f-backend.herokuapp.com/api/categories/${id}`,
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        
+        return response;
+    }
+    static async createCategory(token, title, description){     
+        const response = await axios.post(
+            'https://us0f-backend.herokuapp.com/api/categories',
+            {tittle: title, description: description}, 
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
+    static async changeCategory(token, id, title, description){     
+        const response = await axios.patch(
+            `https://us0f-backend.herokuapp.com/api/categories/${id}`,
+            {tittle: title, description: description}, 
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
+    static async deleteCategory(token, id){     
+        const response = await axios.delete(
+            `https://us0f-backend.herokuapp.com/api/categories/${id}`,
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        
+        return response;
+    }
+
 
     static async createPost(token, tittle, content, categories){
         let categoriesString = '';
@@ -224,6 +268,27 @@ export default class PostService {
         return response;
     }
 
+    static async getFavouritesByPostID(token, id){
+
+        const response = await axios.get(
+            `https://us0f-backend.herokuapp.com/api/posts/${id}/favourite`,
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
+    static async createFavouritesByPostID(token, id){
+
+        const response = await axios.post(
+            `https://us0f-backend.herokuapp.com/api/posts/${id}/favourite`,
+            {},
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
+    static async deleteFavouritesByPostID(token, id){
+        const response = await axios.delete(
+            `https://us0f-backend.herokuapp.com/api/posts/${id}/favourite`,
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
 
     static async getLikesByCommentID(token, id){
 
@@ -244,6 +309,70 @@ export default class PostService {
         const response = await axios.delete(
             `https://us0f-backend.herokuapp.com/api/comments/${id}/like`,
             {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
+    static async getFavouritesByUserLogin(token, login, page){
+
+        const response = await axios.get(
+            `https://us0f-backend.herokuapp.com/api/users/${login}/favourite?page=${page}`,
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
+
+    static async getUsers(token){
+        const response = await axios.get(
+            `https://us0f-backend.herokuapp.com/api/users`,
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
+    static async getUserByLogin(token, login){
+        const response = await axios.get(
+            `https://us0f-backend.herokuapp.com/api/users/${login}`,
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
+    static async createUser(token, data){
+        const response = await axios.post(
+            `https://us0f-backend.herokuapp.com/api/users`,
+            {
+                login: data.login,
+                password: data.password,
+                passwordConfirmation: data.passwordConfirmation,
+                email: data.email,
+                fullName: data.fullName,
+                role: data.role
+            },
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
+    static async changeUserInfoAdmin(token, data){
+        const response = await axios.patch(
+            `https://us0f-backend.herokuapp.com/api/users/${data.userID}`,
+            {
+                login: data.login,
+                email: data.email,
+                fullName: data.fullName,
+                role: data.role
+            },
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+        return response;
+    }
+    static async changeUserAvatar(token, id, selectedFile){
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+        
+        const response = await axios.patch(
+            `https://us0f-backend.herokuapp.com/api/users/avatar/${id}`,
+            formData,
+            {'headers': {'Content-Type':'multipart/form-data', 'Accept':'application/json', 'Authorization': 'Bearer '  + token}});
+        
+        return response;
+    }
+    static async deleteUser(token, id){
+        const response = await axios.delete(
+            `https://us0f-backend.herokuapp.com/api/users/${id}`,
+            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer '  + token}});
+        
         return response;
     }
 }

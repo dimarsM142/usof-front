@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Posts from "./pages/Posts"
 import Navigation from "./components/Navigation.js";
 import Footer from "./components/Footer.js";
-import { privateRoutes, publicRoutes } from "./router";
+import { privateRoutes, publicRoutes, adminRoutes } from "./router";
 import PostService from "./API/PostService";
 import { useFetching } from "./hooks/useFetching";
 function App() {
@@ -43,6 +43,7 @@ function App() {
                 localStorage.setItem('access', response.data.AccessToken);
                 localStorage.setItem('refresh', response.data.RefreshToken);
                 localStorage.setItem('isAuth', 'true');
+                localStorage.setItem('role', response.data.role);
                 setAuth(true);                
             }
         
@@ -55,10 +56,14 @@ function App() {
             localStorage.setItem('isAuth', 'false');
             window.localStorage.setItem('login', '');
             window.localStorage.setItem('ava', '');
+            localStorage.setItem('role', '');
             console.log("ЗМІНИВСЯ СТАТУС ПОМИЛКИ!");
             console.log(refreshError);
         }
     }, [refreshError]);
+    if(auth && localStorage.getItem('role') === 'admin'){
+
+    }
     return (
         <div className="App">
             
@@ -66,16 +71,32 @@ function App() {
             <Navigation auth={auth} setAuth={setAuth} refreshToken={createRefresh} clearRefresh={clearRefresh}/>
             {auth
                 ?
-                <Routes>
-                    {privateRoutes.map(route =>
-                            <Route path={route.path} element={<route.element auth={auth} setAuth={setAuth} refreshToken={createRefresh} clearRefresh={clearRefresh}/>} key={route.path} />
-                        )
+                <>
+                    {localStorage.getItem('role') === 'admin'
+                        ?
+                        <Routes>
+                            {adminRoutes.map(route =>
+                                    <Route path={route.path} element={<route.element auth={auth} setAuth={setAuth} refreshToken={createRefresh} clearRefresh={clearRefresh}/>} key={route.path} />
+                                )
+                            }
+                            <Route path="/" element={<Navigate to="/posts" replace />} />
+                            <Route path="/posts" element={<Posts auth={auth} setAuth={setAuth} refreshToken={createRefresh} clearRefresh={clearRefresh}/>} />
+                            <Route path="/error" element={<Error refreshToken={createRefresh}/>} />
+                            <Route path="*" element={<Navigate to="/error" replace />} />
+                        </Routes>
+                        :
+                        <Routes>
+                            {privateRoutes.map(route =>
+                                    <Route path={route.path} element={<route.element auth={auth} setAuth={setAuth} refreshToken={createRefresh} clearRefresh={clearRefresh}/>} key={route.path} />
+                                )
+                            }
+                            <Route path="/" element={<Navigate to="/posts" replace />} />
+                            <Route path="/posts" element={<Posts auth={auth} setAuth={setAuth} refreshToken={createRefresh} clearRefresh={clearRefresh}/>} />
+                            <Route path="/error" element={<Error refreshToken={createRefresh}/>} />
+                            <Route path="*" element={<Navigate to="/error" replace />} />
+                        </Routes>
                     }
-                    <Route path="/posts" element={<Posts auth={auth} setAuth={setAuth} refreshToken={createRefresh} clearRefresh={clearRefresh}/>} />
-                    <Route path="/" element={<Navigate to="/posts" replace />} />
-                    <Route path="/error" element={<Error refreshToken={createRefresh}/>} />
-                    <Route path="*" element={<Navigate to="/error" replace />} />
-                </Routes>
+                </>
                 :
                 <Routes>
                      {publicRoutes.map(route =>

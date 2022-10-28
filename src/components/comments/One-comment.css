@@ -11,7 +11,8 @@
     grid-template-areas: 
     'author author delete-comment'
     'comment-content comment-content comment-content'
-    'date rating likes';
+    'rating locking likes'
+    'date date date';
 }
 
 .one-comment:hover {
@@ -65,7 +66,7 @@
 .one-comment .comment-rating {
     grid-area: rating;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .one-comment .comment-rating img {
@@ -81,6 +82,24 @@
    font-style: italic;
 }
 
+.one-comment .comment-locking-container{
+    grid-area: locking;
+}
+
+
+.one-comment .comment-locking {
+    margin-top: 6px;
+}
+.one-comment .comment-locking i{
+
+    font-size: 32px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.one-comment .comment-locking i:hover{
+    color: green;
+}
 
 .one-comment .post-likes {
     grid-area: likes;
@@ -98,9 +117,16 @@
     
 }
 
-.one-comment .fa-thumbs-down, .one-comment .fa-thumbs-o-down, .one-comment .fa-thumbs-up, .one-comment .fa-thumbs-o-up  {
+.one-comment .post-likes-container i{
+    transition: 0.5s;
     cursor: pointer;    
 }
+
+.one-comment .post-likes-container i:hover{
+    color: green;
+}
+
+
 
 .one-comment .delete-comment {
     grid-area: delete-comment;
@@ -140,7 +166,16 @@
         color: rgb(82, 82, 82);
         font-size: 15px;
     }
-
+    .one-comment .comment-locking {
+        margin-top: 15px;
+    }
+    .one-comment .comment-locking i{
+    
+        font-size: 22px;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    
 }
 
 
@@ -152,7 +187,7 @@
         'date delete-comment delete-comment'
         'author author author'
         'comment-content comment-content comment-content'
-        'rating rating likes';
+        'rating locking likes';
     }
     .one-comment .post-likes-container {
         font-size: 22px;
@@ -164,9 +199,15 @@
         margin-right: 15px;
         
     }
-    .one-comment .comment-rating {
-        justify-content: flex-start;
-    }    
+    .one-comment .comment-locking {
+        margin-top: 15px;
+    }
+    .one-comment .comment-locking i{
+    
+        font-size: 22px;
+        transition: 0.5s;
+        cursor: pointer;
+    }   
     .one-comment .comment-content {
         color: rgb(82, 82, 82);
         font-size: 14px;

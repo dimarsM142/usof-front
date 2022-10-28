@@ -11,7 +11,6 @@ const CreatePost = () => {
     
     function addPost(e){
         e.preventDefault();
-        console.log(post);
         clearTimeout(curTimeoutID);
         if(post.tittle.length === 0){
             setErrorText('Введіть заголовок');
