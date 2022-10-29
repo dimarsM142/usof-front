@@ -5,13 +5,15 @@ import PostService from '../API/PostService.js';
 import OnePost from "../components/One-Post.js";
 import MyLoader from "../components/UI/MyLoader2.js";
 import './Posts.css';
+import MySearch from "../components/UI/MySearch.js";
 const Posts = () => {
 
     const router = useNavigate();
     const [posts, setPosts] = useState([]);
-    const [params, setParams] = useState({sort:'rating', category:'', status:'', page: 1});
+    const [params, setParams] = useState({sort:'rating', category:'', status:'', page: 1, name:''});
     const [isNext, setIsNext] = useState(10000000000000);
     const [isCategory, setIsCategory] = useState(false);
+    const [name, setName] = useState('');
     const [active, setActive] = useState({date: '', rating: 'active', active: '', inactive:'', all: 'active'});
     const [loading , setLoading] = useState();
     const [fetchPosts, isPostsLoading, errorPosts] = useFetching(async () => {
@@ -80,21 +82,24 @@ const Posts = () => {
             if(params.status !== 'active'){
                 setActive({...active, active: 'active', all: '', inactive: ''});
                 setIsNext(10000000000000);
-                setParams({...params, status:"active", page: 1})
+                setParams({...params, status:"active", page: 1, name:''});
+                setName('');
             }
         }
         else if(e.target.textContent === 'завершені'){
             if(params.status !== 'inactive'){
                 setActive({...active, active: '', all: '', inactive: 'active'});
                 setIsNext(10000000000000);
-                setParams({...params, status:"inactive", page: 1})
+                setParams({...params, status:"inactive", page: 1, name:''});
+                setName('');
             }
         }
         else if(e.target.textContent === 'всі'){
             if(params.status) {
                 setActive({...active, active: '', all: 'active', inactive: ''});
                 setIsNext(10000000000000);
-                setParams({...params, status:"", page: 1})
+                setParams({...params, status:"", page: 1, name:''});
+                setName('');
             }
         }
     }
@@ -125,7 +130,11 @@ const Posts = () => {
                 :
                 <div className="all-posts">
                     <div className="left-part">
+                       
                         {params.category ? <p className="title">{params.category}</p> : <p className="title">Всі категорії</p>}
+                        <div className="search-container">
+                            <MySearch placeholder={"Введіть те, що ви хочете знайти"} value={name} onChange={e=> setName(e.target.value)} onClickSearch={()=>{setParams({...params, name:name, page: 1}); setIsNext(10000000000000);}}/>
+                        </div>
                         <div className="status-type">
                             <p className="status-title">Статус</p> 
                             <div className="status-content">

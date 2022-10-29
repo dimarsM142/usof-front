@@ -4,19 +4,24 @@ import {useFetching} from '../hooks/useFetching.js';
 import PostService from '../API/PostService.js';
 import OneUser from "./one-user.js";
 import MyLoader from "../components/UI/MyLoader2.js";
+import MySearch from "../components/UI/MySearch.js";
 import './Admin-checkUsers.css';
 
 const Users = () => {
 
     const router = useNavigate();
     const [users, setUsers] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState([]);
+    const [name, setName] = useState('');
     const [fetchUsers, isUsersLoading, errorUsers] = useFetching(async () => {
         const response = await PostService.getUsers(localStorage.getItem('access'));
         if(!response.data.message){
             setUsers(response.data);
+            setSelectedUsers(response.data);
         }
         else{ 
-            setUsers('0 posts');
+            setUsers('0 users');
+            setSelectedUsers('0 users');
         }
     })
 
@@ -35,6 +40,26 @@ const Users = () => {
         fetchUsers();
     }, []);
     
+    function searchFoo(){
+        if(name.length === 0){
+            setSelectedUsers(users);
+        }
+        else{
+            let temArpp = [];
+            for(let i = 0; i < users.length; i++) {
+                if(users[i].login.toLowerCase().includes(name.toLowerCase()) || users[i].fullName.toLowerCase().includes(name.toLowerCase()) || users[i].email.toLowerCase().includes(name.toLowerCase())){
+                    temArpp.push(users[i]); 
+                }
+            }
+            if(temArpp.length > 0){ 
+                setSelectedUsers(temArpp)
+            }
+            else {
+                setSelectedUsers('0 users');
+            }     
+        }
+    }
+
     return (
         <div>
             {isUsersLoading 
@@ -55,12 +80,24 @@ const Users = () => {
                     <div className="creating-user">
                         <Link to='/admin/create-user'>Створити нового користувача</Link>
                     </div>
-                    {users === '0 posts'
+                    {selectedUsers === '0 users'
                         ?
-                        <p className="no-users">Відсутні пости, які відповідають заданим критеріям :(</p>
+                            <div>
+                                {users !== '0 users' &&
+                                    <div className="search-container">
+                                        <MySearch placeholder={"Введіть логін або ім'я користувача, якого ви хочете знайти"} value={name} onChange={e=> setName(e.target.value)} onClickSearch={searchFoo}/>
+                                    </div>
+                                }
+                                <p className="no-users">Відсутні користувачі, які відповідають заданим критеріям :(</p>
+                            </div>
                         :
-                        <div className="user-container">
-                            {users.map((user) =><OneUser user={user} key={user.userID}/>)}
+                        <div>
+                            <div className="search-container">
+                                <MySearch placeholder={"Введіть логін або ім'я користувача, якого ви хочете знайти"} value={name} onChange={e=> setName(e.target.value)} onClickSearch={searchFoo}/>
+                            </div>
+                            <div className="user-container">
+                                {selectedUsers.map((user) =><OneUser user={user} key={user.userID}/>)}
+                            </div>
                         </div>
                     }
                 </div> 

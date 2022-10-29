@@ -1,5 +1,4 @@
 .all-categories {
-
     margin: 100px 20px;
 }
 
@@ -54,6 +53,20 @@
     background-color: rgb(0, 150, 12);
     color: #ffffff;
     box-shadow: 0px 10px 15px rgb(112, 112, 112);
+}
+
+.all-categories .search-container{
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 60px;
+}
+
+.all-categories .no-posts{
+    text-align: center;
+    color: green;
+    font-weight: 700;
+    font-size: 32px;
+    text-transform: uppercase;
 }
 
 @media screen and (max-width: 500px) {

@@ -107,6 +107,7 @@ export default class PostService {
                 author: login,
                 sort: params.sort,
                 status: params.status,
+                name: params.name,
                 page: page || params.page
             },
             'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer '  + token}});
@@ -121,7 +122,9 @@ export default class PostService {
                 category: params.category,
                 sort: params.sort,
                 status: params.status,
+                name: params.name,
                 page: page || params.page
+                
             },
             'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer '  + token}});
         

@@ -13,7 +13,7 @@
 
 .all-posts .title{
     margin-left: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
     color: green;
     font-weight: 700;
     text-transform: uppercase;
@@ -35,6 +35,11 @@
     border: 2px solid rgb(37, 148, 37);
     border-radius: 5px;
 
+}
+
+.all-posts .left-part .search-container{
+    margin-left: 15px;
+    margin-bottom: 60px;
 }
 
 .all-posts .status-content, .all-posts .sort-content{
@@ -222,6 +227,10 @@
         margin-bottom: 60px;
         margin-left: 20px;
     }
+    .all-posts .left-part .search-container{
+        margin-left: 0px;
+        margin-right: 20px;
+    }
     .all-posts .center-part{
         width: auto;
         margin-right: 30px;
@@ -246,6 +255,10 @@
         width:auto;
         margin-bottom: 60px;
         margin-left: 20px;
+    }
+    .all-posts .left-part .search-container{
+        margin-left: 0px;
+        margin-right: 20px;
     }
     .all-posts .center-part{
         width: auto;

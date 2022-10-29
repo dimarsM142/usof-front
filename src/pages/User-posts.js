@@ -5,13 +5,15 @@ import PostService from '../API/PostService.js';
 import OnePost from "../components/One-Post.js";
 import './User-posts.css';
 import MyLoader from "../components/UI/MyLoader2.js";
+import MySearch from "../components/UI/MySearch.js";
 const UserPosts = () => {
     const router = useNavigate();
     const [login, setLogin] = useState({});
     const [ava, setAva] = useState('');
     const [info, setData] = useState({});
     const [posts, setPosts] = useState([]);
-    const [params, setParams] = useState({status:'',sort: 'rating', page: 1});
+    const [name, setName] = useState('');
+    const [params, setParams] = useState({status:'',sort: 'rating', page: 1, name: ''});
     const [isNext, setIsNext] = useState(10000000000000);
     const [active, setActive] = useState({date: '', rating: 'active', active: '', inactive:'', all: 'active'});
     const [fetchAvatarInfo, isAvatarLoading, errorAvatarInfo] = useFetching(async () => {
@@ -80,21 +82,24 @@ const UserPosts = () => {
             if(params.status !== 'active'){
                 setActive({...active, active: 'active', all: '', inactive: ''});
                 setIsNext(10000000000000);
-                setParams({...params, status:"active", page: 1})
+                setParams({...params, status:"active", page: 1, name:''});
+                setName('');
             }
         }
         else if(e.target.textContent === 'завершені'){
             if(params.status !== 'inactive'){
                 setActive({...active, active: '', all: '', inactive: 'active'});
                 setIsNext(10000000000000);
-                setParams({...params, status:"inactive", page: 1})
+                setParams({...params, status:"inactive", page: 1, name:''});
+                setName('');
             }
         }
         else if(e.target.textContent === 'всі'){
             if(params.status) {
                 setActive({...active, active: '', all: 'active', inactive: ''});
                 setIsNext(10000000000000);
-                setParams({...params, status:"", page: 1})
+                setParams({...params, status:"", page: 1, name:''});
+                setName('');
             }
         }
     }
@@ -160,6 +165,9 @@ const UserPosts = () => {
                                         </div>
                                         <div className="user-posts-favourite">
                                             <Link to={{pathname: `/${window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/posts'))}/favourite`}}>Збережені</Link>
+                                        </div>
+                                        <div className="search-container">
+                                            <MySearch placeholder={"Введіть те, що ви хочете знайти"} value={name} onChange={e=> setName(e.target.value)} onClickSearch={()=>{setParams({...params, name:name, page: 1}); setIsNext(10000000000000);}}/>
                                         </div>
                                         <div className="status-type">
                                             <p className="status-title">Статус</p> 
