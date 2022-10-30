@@ -16,7 +16,11 @@ const Login = (props) => {
     const [fetchUserAva, isAvatarLoading, avatarError] = useFetching(async () => {
         const response = await PostService.getUserAvatar(localStorage.getItem('access'));
         localStorage.setItem('ava', response.data.picture);
+        localStorage.setItem('isAuth', 'true');
+        props.setAuth(true);
+        props.refreshToken();
         router('/posts');
+
     })
 
     const [fetchLogin, isPostsLoading, errorLogin] = useFetching(async () => {
@@ -24,10 +28,8 @@ const Login = (props) => {
 
             localStorage.setItem('access', response.data.AccessToken);
             localStorage.setItem('refresh', response.data.RefreshToken);
-            localStorage.setItem('isAuth', 'true');
             localStorage.setItem('role', response.data.role);
-            props.setAuth(true);
-            props.refreshToken();
+
             fetchUserAva();
 
 
@@ -128,10 +130,7 @@ const Login = (props) => {
                     }
                 </div>
                          
-            }
-
-            
-                       
+            }     
         </div>
     );
 }

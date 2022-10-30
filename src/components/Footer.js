@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <div className="footer">
             <div className="left-part">
-                <img className="logo" src='https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Boston_Celtics.svg/640px-Boston_Celtics.svg.png' alt='logo'/>
+                <img className="logo" src='https://cdn-icons-png.flaticon.com/128/7540/7540143.png' alt='logo'/>
                 <div>
                     <p>Usof</p>
                     <p>Авторське право © 2022 DimarsM142. Всі права захищені</p>

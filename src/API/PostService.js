@@ -232,13 +232,23 @@ export default class PostService {
         return response;
     }
 
-    static async createComment(token, id, content){
+    static async createComment(token, id, content, replyID){
+        if(replyID){
+            const response = await axios.post(
+                `https://us0f-backend.herokuapp.com/api/posts/${id}/comments`,
+                {content: content,
+                replyID: replyID}, 
+                {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+            return response;
+        }
+        else{
+            const response = await axios.post(
+                `https://us0f-backend.herokuapp.com/api/posts/${id}/comments`,
+                {content: content}, 
+                {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
+            return response;
+        }
         
-        const response = await axios.post(
-            `https://us0f-backend.herokuapp.com/api/posts/${id}/comments`,
-            {content: content}, 
-            {'headers': {'Content-Type':'application/json', 'Accept':'application/json', 'Authorization': 'Bearer ' + token}});
-        return response;
     }
 
     static async deleteCommentByID(token, id){

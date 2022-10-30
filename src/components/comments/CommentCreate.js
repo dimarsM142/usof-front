@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import { useFetching } from "../../hooks/useFetching";
 import PostService from "../../API/PostService";
 import MyButton from '../UI/MyButton.js';
@@ -25,8 +25,10 @@ const CommentCreate = (props) =>{
     }
 
     const [fetchCreatePost, isCreatePostLoading, errorCreatePost] = useFetching(async () => {
-        const response = await PostService.createComment(localStorage.getItem('access'), props.id, comment);
+        const response = await PostService.createComment(localStorage.getItem('access'), props.id, comment, props.reply.commentID);
+        props.setReply({commentID: '', author: '', content: ''});
         props.fetchComments();
+
         setComment('');
     })
 
@@ -38,11 +40,29 @@ const CommentCreate = (props) =>{
         }
     },[errorCreatePost]);
     return(
-        <form onSubmit={submitForm} className='create-comment'>
-            <textarea placeholder="напишіть ваш коментар" value={comment}  onChange={e => setComment(e.target.value)} />
-            <MyButton>Надіслати</MyButton>
-            {errorText && <p className="error">{errorText}</p>}
-        </form>
+        <div>
+            {props.reply.commentID &&
+                <div className="reply-create">
+                    <div className="reply">
+                        <Link to={{pathname: `/${props.reply.author}/posts`}} className="reply-author">@{props.reply.author}</Link>
+                        {props.reply.content.length < 120
+                            ?
+                            <p>{props.reply.content}</p>
+                            :
+                            <p>{props.reply.content.slice(0, 120) + ' ...'}</p>
+                        }
+                    </div>
+                    <div>
+                        <i className="fa fa-times" aria-hidden="true" onClick={()=>{props.setReply({commentID: '', author: '', content: ''})}}></i>
+                    </div>
+                </div>
+            }
+            <form onSubmit={submitForm} className='create-comment'>
+                <textarea placeholder="напишіть ваш коментар" value={comment}  onChange={e => setComment(e.target.value)} />
+                <MyButton>Надіслати</MyButton>
+                {errorText && <p className="error">{errorText}</p>}
+            </form>
+        </div>
     );
 }
 

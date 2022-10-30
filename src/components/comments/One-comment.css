@@ -1,3 +1,38 @@
+.reply-up-side {
+    display: inline-flex;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    background-color: rgba(199, 199, 199, 0.6);
+}
+
+.reply-up-side a{
+    text-decoration: none;
+    color: rgba(0, 128, 0, 0.6);
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-right: 20px;
+    margin-top: 3px;
+    transition: 0.3s;
+}
+
+.reply-up-side a:hover{
+    color: white;
+    background-color: green;
+    padding: 3px 5px;
+}
+
+.reply-up-side p{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+
 .one-comment {
     border-top: 1px solid rgb(88, 155, 91);
     border-bottom: 1px solid rgb(88, 155, 91);
@@ -8,11 +43,13 @@
     transition: 0.5s;
     display: grid;
     grid-template-rows: auto auto auto auto auto;
+    justify-content: space-between;
     grid-template-areas: 
+    
     'author author delete-comment'
     'comment-content comment-content comment-content'
-    'rating locking likes'
-    'date date date';
+    'date date likes'
+    'rating locking reply';
 }
 
 .one-comment:hover {
@@ -55,7 +92,7 @@
 .one-comment .comment-content {
     grid-area: comment-content;
     padding: 10px 20px;
-    padding: 10px 15px 60px 15px;
+    padding: 10px 15px 10px 15px;
 }
 
 .one-comment .comment-content {
@@ -86,12 +123,12 @@
     grid-area: locking;
 }
 
-
 .one-comment .comment-locking {
     margin-top: 6px;
 }
-.one-comment .comment-locking i{
 
+
+.one-comment .comment-locking i{
     font-size: 32px;
     transition: 0.5s;
     cursor: pointer;
@@ -101,11 +138,29 @@
     color: green;
 }
 
+.one-comment .comment-reply {
+    margin-top: 6px;
+    grid-area: reply;
+}
+
+
+.one-comment .comment-reply i{
+    font-size: 32px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.one-comment .comment-reply i:hover{
+    color: green;
+}
+
+
 .one-comment .post-likes {
     grid-area: likes;
     text-align: right;
     margin-top: 15px;
     margin-right: 20px;
+    margin-bottom: 40px;
 }
 
 .one-comment .post-likes-container {
@@ -149,6 +204,12 @@
 }
 
 @media only screen and (min-width: 450px) and (max-width: 550px){
+    .reply-up-side {
+        display: block;
+    }
+    .reply-up-side p{
+        margin-left: 10px;
+    }
     .one-comment .post-likes-container {
         font-size: 22px;
     }
@@ -175,11 +236,26 @@
         transition: 0.5s;
         cursor: pointer;
     }
+    .one-comment .comment-reply {
+        margin-top: 15px;
+    }
+    .one-comment .comment-reply i{
     
+        font-size: 22px;
+        transition: 0.5s;
+        cursor: pointer;
+    }   
 }
 
 
 @media only screen and (max-width: 450px){
+    .reply-up-side {
+        display: block;
+    }
+    .reply-up-side p{
+        font-size: 14px;
+    }
+    
     .one-comment {
 
         grid-template-rows: auto auto auto auto;
@@ -187,7 +263,8 @@
         'date delete-comment delete-comment'
         'author author author'
         'comment-content comment-content comment-content'
-        'rating locking likes';
+        'likes likes likes'
+        'rating locking reply';
     }
     .one-comment .post-likes-container {
         font-size: 22px;
@@ -203,6 +280,15 @@
         margin-top: 15px;
     }
     .one-comment .comment-locking i{
+    
+        font-size: 22px;
+        transition: 0.5s;
+        cursor: pointer;
+    }  
+    .one-comment .comment-reply {
+        margin-top: 15px;
+    }
+    .one-comment .comment-reply i{
     
         font-size: 22px;
         transition: 0.5s;

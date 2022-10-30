@@ -112,7 +112,6 @@ const OneComment = (props) =>{
             }
         };
     }, [likes]);
-
     function lockingFoo(e) {
         e.preventDefault();
         if(locking === 'unlocked'){
@@ -123,71 +122,97 @@ const OneComment = (props) =>{
         }
         fetchChangeLocking();
     }
+    function replyFoo(){
+        if(localStorage.getItem('isAuth') === 'true'){
+            props.setReply({commentID: props.comment.id, author: props.comment.authorOfComment, content: props.comment.comment});
+        }
+        else{
+            router('/login');
+            return;
+        }
+        
+    }
     return(
-        <div className="one-comment">
-            <div className="comment-author">
-                <Link to={{pathname: `/${props.comment.authorOfComment}/posts`}}>{props.comment.authorOfComment}</Link>
-
-            </div>
-            <div className="comment-content">
-                <p>{props.comment.comment}</p>
-            </div>
-            <div className="comment-date"><p>{parseDate(props.comment.commentDate)}</p></div>
-            <div className="comment-rating">
-                <img src='https://cdn-icons-png.flaticon.com/128/3163/3163706.png' alt='txt' />
-                <p>{props.comment.rating}</p>
-            </div>
-            <div className="comment-locking-container">
-                {localStorage.getItem('role') === 'admin' &&
-                    <div>
-                        {locking === 'unlocked' 
-                            ?
-                            <div className="comment-locking">
-                                <i className="fa fa-check-square" onClick={lockingFoo} aria-hidden="true"></i>
-                            </div>
-                            :
-                            <div className="comment-locking">
-                                <i className="fa fa-minus-square" onClick={lockingFoo} aria-hidden="true"></i>
-                            </div>
-                        }
-                    </div>
-                }
-            </div>
-            {isLiked !== '' 
-                ?
-                <div className="post-likes">
-                    {isLiked === 'like'
+        <div>
+            {props.comment.replyID !== null &&
+                <div className="reply-up-side">
+                    <Link to={{pathname: `/${props.comment.replyAuthor}/posts`}} className="reply-author">@{props.comment.replyAuthor}</Link>
+                    {props.comment.replyComment.length < 40
                         ?
-                        <div className="post-likes-container">
-                            <i className="fa fa-thumbs-o-down" aria-hidden="true" onClick={likeFoo}></i>
-                            <i className="fa fa-thumbs-up" aria-hidden="true" onClick={likeFoo}></i>
-                        </div>
+                        <p>{props.comment.replyComment}</p>
                         :
-                        <div className="post-likes-container">
-                            <i className="fa fa-thumbs-down" aria-hidden="true" onClick={likeFoo}></i>
-                            <i className="fa fa-thumbs-o-up" aria-hidden="true" onClick={likeFoo}></i>
+                        <p>{props.comment.replyComment.slice(0, 40) + ' ...'}</p>
+                    }
+                </div>
+            }
+            <div className="one-comment">
+                <div className="comment-author">
+                    <Link to={{pathname: `/${props.comment.authorOfComment}/posts`}}>{props.comment.authorOfComment}</Link>
+
+                </div>
+                <div className="comment-content">
+                    <p>{props.comment.comment}</p>
+                </div>
+                <div className="comment-date"><p>{parseDate(props.comment.commentDate)}</p></div>
+                <div className="comment-rating">
+                    <img src='https://cdn-icons-png.flaticon.com/128/3163/3163706.png' alt='txt' />
+                    <p>{props.comment.rating}</p>
+                </div>
+                <div className="comment-reply">
+                    <i className="fa fa-reply" aria-hidden="true" onClick={replyFoo}></i>
+                </div>
+                <div className="comment-locking-container">
+                    {localStorage.getItem('role') === 'admin' &&
+                        <div>
+                            {locking === 'unlocked' 
+                                ?
+                                <div className="comment-locking">
+                                    <i className="fa fa-check-square" onClick={lockingFoo} aria-hidden="true"></i>
+                                </div>
+                                :
+                                <div className="comment-locking">
+                                    <i className="fa fa-minus-square" onClick={lockingFoo} aria-hidden="true"></i>
+                                </div>
+                            }
                         </div>
                     }
                 </div>
-                :
-                <div className="post-likes">
-                    <div className="post-likes-container">
-                        <i className="fa fa-thumbs-o-down" aria-hidden="true" onClick={likeFoo}></i>
-                        <i className="fa fa-thumbs-o-up" aria-hidden="true" onClick={likeFoo}></i>
-                    </div>
-                </div>
-            }
-            {localStorage.getItem('login') === props.comment.authorOfComment ? 
-                <div className="delete-comment">
-                    <i onClick={deletePost} className="fa fa-times-circle-o" aria-hidden="true"></i>
-                </div>
-                :
-                    <div className="delete-comment">
-                        {localStorage.getItem('role') === 'admin' &&
-                            <i onClick={deletePost} className="fa fa-times-circle-o" aria-hidden="true"></i>
+                {isLiked !== '' 
+                    ?
+                    <div className="post-likes">
+                        {isLiked === 'like'
+                            ?
+                            <div className="post-likes-container">
+                                <i className="fa fa-thumbs-o-down" aria-hidden="true" onClick={likeFoo}></i>
+                                <i className="fa fa-thumbs-up" aria-hidden="true" onClick={likeFoo}></i>
+                            </div>
+                            :
+                            <div className="post-likes-container">
+                                <i className="fa fa-thumbs-down" aria-hidden="true" onClick={likeFoo}></i>
+                                <i className="fa fa-thumbs-o-up" aria-hidden="true" onClick={likeFoo}></i>
+                            </div>
                         }
                     </div>
-            }
+                    :
+                    <div className="post-likes">
+                        <div className="post-likes-container">
+                            <i className="fa fa-thumbs-o-down" aria-hidden="true" onClick={likeFoo}></i>
+                            <i className="fa fa-thumbs-o-up" aria-hidden="true" onClick={likeFoo}></i>
+                        </div>
+                    </div>
+                }
+                {localStorage.getItem('login') === props.comment.authorOfComment ? 
+                    <div className="delete-comment">
+                        <i onClick={deletePost} className="fa fa-times-circle-o" aria-hidden="true"></i>
+                    </div>
+                    :
+                        <div className="delete-comment">
+                            {localStorage.getItem('role') === 'admin' &&
+                                <i onClick={deletePost} className="fa fa-times-circle-o" aria-hidden="true"></i>
+                            }
+                        </div>
+                }
+            </div>
         </div>
     );
    

@@ -7,6 +7,7 @@ import CommentCreate from "./CommentCreate.js";
 import './Comments.css';
 const Comments = (props) =>{
     const router = useNavigate();
+    const [reply, setReply] = useState({commentID: '', author: '', content: ''});
     const [comments, setComments] = useState({});
     const [fetchComments, isCommentsLoading, errorComments] = useFetching(async () => {
         const response = await PostService.getComments(localStorage.getItem('access'), +props.id);
@@ -17,7 +18,6 @@ const Comments = (props) =>{
             fetchComments();
         }
     }, [props.id]);
-
     useEffect(()=>{
         if(errorComments){
             setTimeout(()=>{
@@ -31,7 +31,7 @@ const Comments = (props) =>{
                 {comments[0] &&
                     <div className="comments-container">
                         <p>Відповіді:</p>
-                        {comments.map((comment)=> <OneComment comment={comment} key={comment.id} fetchComments={fetchComments}/>)}
+                        {comments.map((comment)=> <OneComment comment={comment} key={comment.id} fetchComments={fetchComments} setReply={setReply}/>)}
                     </div>
                 }
 
@@ -40,7 +40,7 @@ const Comments = (props) =>{
                         {props.locking === 'unlocked' &&
                             <div className="comments-create-container">
                                 <p>Знаєте відповідь на запитання?</p>
-                                <CommentCreate id={props.id} fetchComments={fetchComments} />
+                                <CommentCreate id={props.id} reply={reply} fetchComments={fetchComments} setReply={setReply}/>
                             </div>
                         }
                     </div>
