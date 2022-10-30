@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {useNavigate, Link} from 'react-router-dom';
+import * as Scroll from 'react-scroll';
 import { useFetching } from "../../hooks/useFetching";
 import PostService from "../../API/PostService";
 import { parseDate } from "../date-style";
 import './One-comment.css';
+let ScrollLink = Scroll.Link;
 const OneComment = (props) =>{
     const [likes, setLikes] = useState([]);
     const [isLiked, setIsLiked] = useState('');
@@ -125,6 +127,7 @@ const OneComment = (props) =>{
     function replyFoo(){
         if(localStorage.getItem('isAuth') === 'true'){
             props.setReply({commentID: props.comment.id, author: props.comment.authorOfComment, content: props.comment.comment});
+            props.createElement.current.focus();
         }
         else{
             router('/login');
@@ -132,20 +135,25 @@ const OneComment = (props) =>{
         }
         
     }
+    const closeMenu = () => {};
     return(
         <div>
             {props.comment.replyID !== null &&
                 <div className="reply-up-side">
                     <Link to={{pathname: `/${props.comment.replyAuthor}/posts`}} className="reply-author">@{props.comment.replyAuthor}</Link>
-                    {props.comment.replyComment.length < 40
+                    {props.comment.replyComment.length < 30
                         ?
-                        <p>{props.comment.replyComment}</p>
+                        <ScrollLink to={props.comment.replyID.toString()} className='reply-comment' spy={true} smooth={true} offset={-60} duration={500} onClick={closeMenu}>
+                            {props.comment.replyComment}
+                        </ScrollLink>
                         :
-                        <p>{props.comment.replyComment.slice(0, 40) + ' ...'}</p>
+                        <ScrollLink to={props.comment.replyID.toString()} className='reply-comment' spy={true} smooth={true} offset={-60} duration={500} onClick={closeMenu}>
+                            {props.comment.replyComment.slice(0, 30) + ' ...'}
+                        </ScrollLink>
                     }
                 </div>
             }
-            <div className="one-comment">
+            <div className="one-comment" id={props.comment.id}>
                 <div className="comment-author">
                     <Link to={{pathname: `/${props.comment.authorOfComment}/posts`}}>{props.comment.authorOfComment}</Link>
 

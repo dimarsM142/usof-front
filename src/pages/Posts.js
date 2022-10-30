@@ -158,12 +158,12 @@ const Posts = () => {
                             {localStorage.getItem('isAuth') !== 'false' 
                                 ?
                                 <div>
-                                    <p>Не знайшли відповіді?</p>
+                                    <p>Не знайшли запитання?</p>
                                     <Link to='/posts/create'>Задати нове запитання</Link>
                                 </div>
                                 : 
                                 <div>
-                                    <p>Не знайшли відповіді?</p>
+                                    <p>Не знайшли запитання?</p>
                                     <Link to='/login'>Зайти в акаунт</Link>
                                 </div>
                             }

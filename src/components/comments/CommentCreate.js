@@ -58,7 +58,7 @@ const CommentCreate = (props) =>{
                 </div>
             }
             <form onSubmit={submitForm} className='create-comment'>
-                <textarea placeholder="напишіть ваш коментар" value={comment}  onChange={e => setComment(e.target.value)} />
+                <textarea placeholder="напишіть ваш коментар" id='create' value={comment} ref={props.createElement} onChange={e => setComment(e.target.value)} />
                 <MyButton>Надіслати</MyButton>
                 {errorText && <p className="error">{errorText}</p>}
             </form>

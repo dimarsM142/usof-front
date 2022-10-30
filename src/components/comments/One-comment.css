@@ -8,7 +8,7 @@
     background-color: rgba(199, 199, 199, 0.6);
 }
 
-.reply-up-side a{
+.reply-up-side .reply-author{
     text-decoration: none;
     color: rgba(0, 128, 0, 0.6);
     font-size: 20px;
@@ -18,20 +18,25 @@
     transition: 0.3s;
 }
 
-.reply-up-side a:hover{
+.reply-up-side .reply-author:hover{
     color: white;
     background-color: green;
     padding: 3px 5px;
 }
 
-.reply-up-side p{
-    text-decoration: none;
+.reply-up-side .reply-comment{
     color: rgba(0, 0, 0, 0.4);
     font-size: 16px;
     margin-bottom: 5px;
     margin-top: 10px;
+    cursor: pointer;
+    transition: 0.5s;
 }
 
+.reply-up-side .reply-comment:hover{
+    color: green;
+    text-decoration: underline rgb(97, 97, 97);
+}
 
 .one-comment {
     border-top: 1px solid rgb(88, 155, 91);
@@ -44,6 +49,7 @@
     display: grid;
     grid-template-rows: auto auto auto auto auto;
     justify-content: space-between;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 
     
     'author author delete-comment'
@@ -121,6 +127,7 @@
 
 .one-comment .comment-locking-container{
     grid-area: locking;
+    text-align: center;
 }
 
 .one-comment .comment-locking {
@@ -139,8 +146,10 @@
 }
 
 .one-comment .comment-reply {
-    margin-top: 6px;
     grid-area: reply;
+    margin-top: 6px;
+    text-align: right;
+    margin-right: 20px;
 }
 
 
@@ -207,7 +216,8 @@
     .reply-up-side {
         display: block;
     }
-    .reply-up-side p{
+    .reply-up-side .reply-comment{
+        display: block;
         margin-left: 10px;
     }
     .one-comment .post-likes-container {
@@ -252,12 +262,13 @@
     .reply-up-side {
         display: block;
     }
-    .reply-up-side p{
-        font-size: 14px;
+    .reply-up-side .reply-comment{
+        display: block;
+        font-size: 12px;
     }
     
     .one-comment {
-
+        grid-template-columns: auto auto auto;
         grid-template-rows: auto auto auto auto;
         grid-template-areas:
         'date delete-comment delete-comment'

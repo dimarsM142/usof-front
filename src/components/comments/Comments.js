@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import {useFetching} from '../../hooks/useFetching.js';
 import PostService from '../../API/PostService.js';
@@ -7,6 +7,7 @@ import CommentCreate from "./CommentCreate.js";
 import './Comments.css';
 const Comments = (props) =>{
     const router = useNavigate();
+    const createElement= useRef();
     const [reply, setReply] = useState({commentID: '', author: '', content: ''});
     const [comments, setComments] = useState({});
     const [fetchComments, isCommentsLoading, errorComments] = useFetching(async () => {
@@ -28,11 +29,14 @@ const Comments = (props) =>{
     return(
         <div>
             <div className="all-comments"> 
-                {comments[0] &&
-                    <div className="comments-container">
-                        <p>Відповіді:</p>
-                        {comments.map((comment)=> <OneComment comment={comment} key={comment.id} fetchComments={fetchComments} setReply={setReply}/>)}
-                    </div>
+                {comments[0] 
+                    ?
+                        <div className="comments-container">
+                            <p>Відповіді:</p>
+                            {comments.map((comment)=> <OneComment comment={comment} key={comment.id} fetchComments={fetchComments} createElement={createElement} setReply={setReply}/>)}
+                        </div>
+                    :
+                        <p className="no-comments">Відсутні коментарі. Якщо знаєте відповідь, мерщій пишіть!</p>
                 }
 
                 {window.localStorage.getItem('isAuth') === 'true' &&
@@ -40,7 +44,7 @@ const Comments = (props) =>{
                         {props.locking === 'unlocked' &&
                             <div className="comments-create-container">
                                 <p>Знаєте відповідь на запитання?</p>
-                                <CommentCreate id={props.id} reply={reply} fetchComments={fetchComments} setReply={setReply}/>
+                                <CommentCreate id={props.id} reply={reply} fetchComments={fetchComments} createElement={createElement} setReply={setReply}/>
                             </div>
                         }
                     </div>
