@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import {useFetching} from '../hooks/useFetching.js';
 import PostService from '../API/PostService.js';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import MyInput from "../components/UI/MyInput.js";
 import MyButton from "../components/UI/MyButton.js";
 import MyLoader from "../components/UI/MyLoader.js";
@@ -35,7 +35,7 @@ const ChangeUser = () => {
         setInfo(response.data[0]);
     })
     const [fetchChangeUser, isChangeLoading, changeUserError] = useFetching(async () => {
-        await PostService.changeUserInfoAdmin(localStorage.getItem('access'), info);
+        const response = await PostService.changeUserInfoAdmin(localStorage.getItem('access'), info);
         
         setSuccessRes(true);
         setTimeout(()=>{
@@ -44,7 +44,7 @@ const ChangeUser = () => {
     })
 
     const [fetchChangeAva, isChangeAvaLoading, errorAvaChange] = useFetching(async () => {
-        await PostService.changeUserAvatar(localStorage.getItem('access'), info.userID,selectedFile);
+        const response = await PostService.changeUserAvatar(localStorage.getItem('access'), info.userID,selectedFile);
         setSuccessRes(true);
         setTimeout(()=>{
             router(`/posts`)

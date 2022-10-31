@@ -30,8 +30,8 @@ const PostById = () => {
             router('/error');
         }
     })
-    const [fetchDeletePost, , errorDeletePost] = useFetching(async () => {
-       await PostService.deletePostByID(localStorage.getItem('access'), post.id);
+    const [fetchDeletePost, isDeleteLoading, errorDeletePost] = useFetching(async () => {
+        const response = await PostService.deletePostByID(localStorage.getItem('access'), post.id);
         router('/posts');
     })
 
@@ -42,30 +42,30 @@ const PostById = () => {
             setLikes(response.data);
         }
     })
-    const [fetchCreateLikes, , errorCreateLikes] = useFetching(async () => {
-        await PostService.createLikesByPostID(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6), type);
+    const [fetchCreateLikes, isCreateLikesLoading, errorCreateLikes] = useFetching(async () => {
+        const response = await PostService.createLikesByPostID(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6), type);
     })
     const [fetchDeleteLikes, isDeleteLikesLoading, errorDeleteLikes] = useFetching(async () => {
-        await PostService.deleteLikesByPostID(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
+        const response = await PostService.deleteLikesByPostID(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
     })
 
-    const [fetchFavourites, , errorFavourites] = useFetching(async () => {
+    const [fetchFavourites, isFavouritesLoading, errorFavourites] = useFetching(async () => {
         const response = await PostService.getFavouritesByPostID(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
         if(response.data.message !== '0 favourites on this post'){
             setFavourites(response.data);
         }
     })
-    const [fetchCreateFavourites, , errorCreateFavourite] = useFetching(async () => {
-        await PostService.createFavouritesByPostID(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
+    const [fetchCreateFavourites, isCreateFavouriteLoading, errorCreateFavourite] = useFetching(async () => {
+        const response = await PostService.createFavouritesByPostID(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
     })
-    const [fetchDeleteFavourite, , errorDeleteFavourite] = useFetching(async () => {
-        await PostService.deleteFavouritesByPostID(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
+    const [fetchDeleteFavourite, isDeleteFavouriteLoading, errorDeleteFavourite] = useFetching(async () => {
+        const response = await PostService.deleteFavouritesByPostID(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
     })
-    const [fetchChangeLocking, , errorChangeLocking] = useFetching(async () => {
-        await PostService.patchPostLocking(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
+    const [fetchChangeLocking, isChangeLocking, errorChangeLocking] = useFetching(async () => {
+        const response = await PostService.patchPostLocking(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
     })
     const [fetchStatusChange, isStatusLoading, errorStatusChange] = useFetching(async () => {
-         await PostService.patchPostStatus(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
+        const response = await PostService.patchPostStatus(localStorage.getItem('access'), +window.location.pathname.slice(window.location.pathname.indexOf('posts/') + 6));
         if(status === 'inactive'){
             setStatus('active');
             router('/posts');
@@ -96,13 +96,14 @@ const PostById = () => {
     }, [likes]);
     
     useEffect(()=>{
-        if(errorPost || errorDeletePost || errorLikes || errorCreateLikes || errorDeleteLikes || errorStatusChange || errorChangeLocking || errorFavourites || errorCreateFavourite || errorDeleteFavourite){
+        if(errorPost || errorDeletePost || errorLikes || errorCreateLikes || errorDeleteLikes || errorStatusChange || errorChangeLocking){
             router('/error');
         }
-    },[errorPost, errorDeletePost, errorLikes, errorDeleteLikes, errorCreateLikes, errorStatusChange, errorChangeLocking, errorFavourites, errorCreateFavourite, errorDeleteFavourite]);
+    },[errorPost, errorDeletePost, errorLikes, errorDeleteLikes, errorCreateLikes, errorStatusChange, errorChangeLocking]);
 
     function deletePost(e){
         setSuccessDeleting(true);
+        //fetchDeletePost();
     }
 
 

@@ -47,7 +47,7 @@ const UserInfo = (props) => {
         setInfo(response.data[0]);
     })
     const [fetchChangeUser, isChangeLoading, changeUserError] = useFetching(async () => {
-        await PostService.changeUserInfo(localStorage.getItem('access'), info);
+        const response = await PostService.changeUserInfo(localStorage.getItem('access'), info);
         localStorage.setItem('login', info.login);
         setSuccessRes(true);
         setTimeout(()=>{
@@ -55,8 +55,8 @@ const UserInfo = (props) => {
         }, 3000);
     })
 
-    const [fetchDeleteUser, , deleteUserError] = useFetching(async () => {
-        await PostService.deleteUserInfo(localStorage.getItem('access'), info);
+    const [fetchDeleteUser, isDeleteLoading, deleteUserError] = useFetching(async () => {
+        const response = await PostService.deleteUserInfo(localStorage.getItem('access'), info);
         localStorage.setItem('login', '');
         localStorage.setItem('isAuth', 'false');
         localStorage.setItem('access', '');
@@ -69,7 +69,7 @@ const UserInfo = (props) => {
         },50)
     })
     const [fetchChangeAva, isChangeAvaLoading, errorAvaChange] = useFetching(async () => {
-        await PostService.patchUserAvatar(localStorage.getItem('access'), selectedFile);
+        const response = await PostService.patchUserAvatar(localStorage.getItem('access'), selectedFile);
         fetchUserAva();
         
     })

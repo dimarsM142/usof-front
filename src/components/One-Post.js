@@ -15,32 +15,32 @@ const OnePost = (props) =>{
     const [isFavourite, setIsFavourite] = useState('');
     const [locking, setLocking] = useState(props.posts.locking);
 
-    const [fetchLikes, , errorLikes] = useFetching(async () => {
+    const [fetchLikes, isLikesLoading, errorLikes] = useFetching(async () => {
         const response = await PostService.getLikesByPostID(localStorage.getItem('access'), props.posts.id);
         if(response.data.message !== '0 likes on this post'){
             setLikes(response.data);
         }
     })
-    const [fetchChangeLocking, , errorChangeLocking] = useFetching(async () => {
-        await PostService.patchPostLocking(localStorage.getItem('access'), props.posts.id);
+    const [fetchChangeLocking, isChangeLocking, errorChangeLocking] = useFetching(async () => {
+        const response = await PostService.patchPostLocking(localStorage.getItem('access'), props.posts.id);
     })
-    const [fetchCreateLikes, , errorCreateLikes] = useFetching(async () => {
-        await PostService.createLikesByPostID(localStorage.getItem('access'), props.posts.id, type);
+    const [fetchCreateLikes, isCreateLikesLoading, errorCreateLikes] = useFetching(async () => {
+        const response = await PostService.createLikesByPostID(localStorage.getItem('access'), props.posts.id, type);
     })
     const [fetchDeleteLikes, isDeleteLikesLoading, errorDeleteLikes] = useFetching(async () => {
-        await PostService.deleteLikesByPostID(localStorage.getItem('access'), props.posts.id);
+        const response = await PostService.deleteLikesByPostID(localStorage.getItem('access'), props.posts.id);
     })
-    const [fetchFavourites, , errorFavourites] = useFetching(async () => {
+    const [fetchFavourites, isFavouritesLoading, errorFavourites] = useFetching(async () => {
         const response = await PostService.getFavouritesByPostID(localStorage.getItem('access'), props.posts.id);
         if(response.data.message !== '0 favourites on this post'){
             setFavourites(response.data);
         }
     })
-    const [fetchCreateFavourites, , errorCreateFavourite] = useFetching(async () => {
-        await PostService.createFavouritesByPostID(localStorage.getItem('access'), props.posts.id);
+    const [fetchCreateFavourites, isCreateFavouriteLoading, errorCreateFavourite] = useFetching(async () => {
+        const response = await PostService.createFavouritesByPostID(localStorage.getItem('access'), props.posts.id);
     })
-    const [fetchDeleteFavourite, , errorDeleteFavourite] = useFetching(async () => {
-        await PostService.deleteFavouritesByPostID(localStorage.getItem('access'), props.posts.id);
+    const [fetchDeleteFavourite, isDeleteFavouriteLoading, errorDeleteFavourite] = useFetching(async () => {
+        const response = await PostService.deleteFavouritesByPostID(localStorage.getItem('access'), props.posts.id);
     })
     
     function likeFoo(e){

@@ -16,27 +16,27 @@ const OneComment = (props) =>{
         e.preventDefault();
         fetchDeleteComment();
     }
-    const [fetchDeleteComment, , errorDeleteComment] = useFetching(async () => {
-        await PostService.deleteCommentByID(localStorage.getItem('access'), props.comment.id);
+    const [fetchDeleteComment, isDeleteLoading, errorDeleteComment] = useFetching(async () => {
+        const response = await PostService.deleteCommentByID(localStorage.getItem('access'), props.comment.id);
         props.fetchComments();
     })
 
-    const [fetchLikes, , errorLikes] = useFetching(async () => {
+    const [fetchLikes, isLikesLoading, errorLikes] = useFetching(async () => {
         const response = await PostService.getLikesByCommentID(localStorage.getItem('access'), props.comment.id);
         if(response.data.message !== '0 likes on this post'){
             setLikes(response.data);
         }
     })
 
-    const [fetchCreateLikes, , errorCreateLikes] = useFetching(async () => {
+    const [fetchCreateLikes, isCreateLikesLoading, errorCreateLikes] = useFetching(async () => {
 
-        await PostService.createLikesByCommentID(localStorage.getItem('access'), props.comment.id, type);
+        const response = await PostService.createLikesByCommentID(localStorage.getItem('access'), props.comment.id, type);
     })
     const [fetchDeleteLikes, isDeleteLikesLoading, errorDeleteLikes] = useFetching(async () => {
-        await PostService.deleteLikesByCommentID(localStorage.getItem('access'), props.comment.id);
+        const response = await PostService.deleteLikesByCommentID(localStorage.getItem('access'), props.comment.id);
     })
-    const [fetchChangeLocking, , ] = useFetching(async () => {
-        await PostService.patchCommentLocking(localStorage.getItem('access'), props.comment.id);
+    const [fetchChangeLocking, isChangeLocking, errorChangeLocking] = useFetching(async () => {
+        const response = await PostService.patchCommentLocking(localStorage.getItem('access'), props.comment.id);
     })
     function likeFoo(e){
         e.preventDefault();

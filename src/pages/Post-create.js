@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import {useFetching} from '../hooks/useFetching.js';
 import PostService from '../API/PostService.js';
 import Select from 'react-select';
@@ -42,7 +42,7 @@ const CreatePost = () => {
     const [categories, setCategories] = useState([]);
     const [errorText, setErrorText] = useState('');
     const [curTimeoutID, setCurTimeoutID] = useState();
-    const [fetchCategories, , errorCategories] = useFetching(async () => {
+    const [fetchCategories, isCategoriesLoading, errorCategories] = useFetching(async () => {
         const response = await PostService.getCategories(localStorage.getItem('access'));
         if(response.data.categories){
             let tempArr = [];

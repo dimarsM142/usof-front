@@ -7,11 +7,13 @@ import './User-favourites.css';
 import MyLoader from "../components/UI/MyLoader2.js";
 const UserFavourites = () => {
     const router = useNavigate();
+    const [login, setLogin] = useState({});
     const [ava, setAva] = useState('');
     const [info, setData] = useState({});
     const [posts, setPosts] = useState([]);
     const [params, setParams] = useState({status:'',sort: 'rating', page: 1});
     const [isNext, setIsNext] = useState(10000000000000);
+    const [active, setActive] = useState({date: '', rating: 'active', active: '', inactive:'', all: 'active'});
     const [fetchAvatarInfo, isAvatarLoading, errorAvatarInfo] = useFetching(async () => {
         const response = await PostService.getUserAvatarLogin(window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/favourite')));
         setAva(response.data.picture);
@@ -41,7 +43,7 @@ const UserFavourites = () => {
     })
 
     useEffect(()=>{
-
+        setLogin(window.location.pathname.slice(1, window.location.pathname.lastIndexOf('/favourite')));
         fetchUserInfo();
         fetchAvatarInfo();
     }, []);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './MyLoader.module.css';
 function MyLoader({children, ...props}){
 	return(

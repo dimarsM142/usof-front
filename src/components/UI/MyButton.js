@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './MyButton.module.css';
 function MyInput({children, ...props}){
 	return(

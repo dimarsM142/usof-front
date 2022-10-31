@@ -35,7 +35,7 @@ function App() {
         }
     }, []);
   
-    const [fetchRefresh, , refreshError] = useFetching(async () => {
+    const [fetchRefresh, isPostsLoading, refreshError] = useFetching(async () => {
         const response = await PostService.refreshToken(localStorage.getItem('refresh'));
             if(response.data && response.data.AccessToken){
                 localStorage.setItem('access', response.data.AccessToken);
@@ -57,7 +57,9 @@ function App() {
             localStorage.setItem('role', '');
         }
     }, [refreshError]);
+    if(auth && localStorage.getItem('role') === 'admin'){
 
+    }
     return (
         <div className="App">
             

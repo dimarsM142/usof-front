@@ -26,7 +26,7 @@ const CreateUser = () => {
     const [dataInputed, setDataInputed] = useState({login:'', password:'',passwordConfirmation:'', email:'', fullName:'', role: 'user'});
     const [curTimeoutID, setCurTimeoutID] = useState();
     const [fetchRegister, isPostsLoading, postError] = useFetching(async () => {// eslint-disable-next-line
-            await PostService.createUser(localStorage.getItem('access'), dataInputed);
+            const response = await PostService.createUser(localStorage.getItem('access'), dataInputed);
             setError("success");
             setTimeout(() =>{
                 router('/admin/users');

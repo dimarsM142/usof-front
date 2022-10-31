@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {useFetching} from '../hooks/useFetching.js';
 import PostService from '../API/PostService.js';
 import MyLoader from "../components/UI/MyLoader.js";
@@ -14,7 +14,7 @@ const User = () =>{
         setUser(response.data[0]);
     })
     const [fetchDeleteUser, isDeleteLoading, deleteUserError] = useFetching(async () => {
-        await PostService.deleteUser(localStorage.getItem('access'), user.userID);
+        const response = await PostService.deleteUser(localStorage.getItem('access'), user.userID);
         setTimeout(()=>{
             router(`/admin/users`)
         },50)

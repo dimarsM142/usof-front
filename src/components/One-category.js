@@ -6,10 +6,10 @@ import './One-category.css'
 const OneCategory = (props) =>{
     
     const router = useNavigate();
-
+    const [category, setCategory] = useState({tittle: '', content:''});
     
-    const [fetchDeleteCategory, , errorDeleteCategory] = useFetching(async () => {
-        await PostService.deleteCategory(localStorage.getItem('access'), props.category.categoryID);
+    const [fetchDeleteCategory, isCategoryLoading, errorDeleteCategory] = useFetching(async () => {
+        PostService.deleteCategory(localStorage.getItem('access'), props.category.categoryID);
         props.fetchCategories();
     })
 

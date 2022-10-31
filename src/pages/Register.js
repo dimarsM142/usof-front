@@ -18,14 +18,14 @@ function checkEmail(email){
     return true;
 }
 
-const Register = () => {
+const Register = (props) => {
     
     const router = useNavigate();
     const [error, setError] = useState('');
     const [dataInputed, setDataInputed] = useState({login:'', password:'',passwordConfirmation:'', email:'', fullName:''});
     const [curTimeoutID, setCurTimeoutID] = useState();
     const [fetchRegister, isPostsLoading, postError] = useFetching(async () => {// eslint-disable-next-line
-            await PostService.register(dataInputed.login, dataInputed.password, dataInputed.email, dataInputed.fullName);
+            const response = await PostService.register(dataInputed.login, dataInputed.password, dataInputed.email, dataInputed.fullName);
             setError("success");
             setTimeout(() =>{
                 router('/login');
