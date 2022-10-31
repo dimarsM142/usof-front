@@ -24,19 +24,13 @@
     padding: 3px 5px;
 }
 
-.reply-up-side .reply-comment{
+.reply-up-side p{
     color: rgba(0, 0, 0, 0.4);
     font-size: 16px;
     margin-bottom: 5px;
     margin-top: 10px;
-    cursor: pointer;
-    transition: 0.5s;
 }
 
-.reply-up-side .reply-comment:hover{
-    color: green;
-    text-decoration: underline rgb(97, 97, 97);
-}
 
 .one-comment {
     border-top: 1px solid rgb(88, 155, 91);
@@ -216,8 +210,7 @@
     .reply-up-side {
         display: block;
     }
-    .reply-up-side .reply-comment{
-        display: block;
+    .reply-up-side p{
         margin-left: 10px;
     }
     .one-comment .post-likes-container {
@@ -262,8 +255,7 @@
     .reply-up-side {
         display: block;
     }
-    .reply-up-side .reply-comment{
-        display: block;
+    .reply-up-side p{
         font-size: 12px;
     }
     
