@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import classes from './MySearch.module.css';
 
 function MySearch(props){

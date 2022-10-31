@@ -12,7 +12,7 @@ const PasswordReset = () => {
     const [errorText, setErrorText] = useState('');
     const [curTimeoutID, setCurTimeoutID] = useState();
     const [fetchForgotPassword, isPostsLoading, postError] = useFetching(async () => {
-            const response = await PostService.resetPassword(dataInputed.password, window.location.pathname.replace('/forgot-password/', ''));
+            await PostService.resetPassword(dataInputed.password, window.location.pathname.replace('/forgot-password/', ''));
             setErrorText("success");
             setTimeout(() =>{
                 router('/login');
