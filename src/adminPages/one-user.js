@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import {Link, useNavigate} from 'react-router-dom';
-import {useFetching} from '../hooks/useFetching.js';
-import PostService from '../API/PostService.js';
+import React from "react";
+import {useNavigate} from 'react-router-dom';
+
 import './one-user.css';
 
 const OneUser = (props) =>{

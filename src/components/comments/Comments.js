@@ -10,7 +10,7 @@ const Comments = (props) =>{
     const createElement= useRef();
     const [reply, setReply] = useState({commentID: '', author: '', content: ''});
     const [comments, setComments] = useState({});
-    const [fetchComments, isCommentsLoading, errorComments] = useFetching(async () => {
+    const [fetchComments, , errorComments] = useFetching(async () => {
         const response = await PostService.getComments(localStorage.getItem('access'), +props.id);
         setComments(response.data);
     })
@@ -36,7 +36,7 @@ const Comments = (props) =>{
                             {comments.map((comment)=> <OneComment comment={comment} key={comment.id} fetchComments={fetchComments} createElement={createElement} setReply={setReply}/>)}
                         </div>
                     :
-                        <p className="no-comments">Відсутні коментарі. Якщо знаєте відповідь, мерщій пишіть!</p>
+                        <p className="no-comments">Відсутні коментарі:(</p>
                 }
 
                 {window.localStorage.getItem('isAuth') === 'true' &&

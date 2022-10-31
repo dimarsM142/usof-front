@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate, Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useFetching} from '../hooks/useFetching.js';
 import PostService from '../API/PostService.js';
 import MyInput from "../components/UI/MyInput.js";
@@ -26,7 +26,7 @@ const CreateUser = () => {
     const [dataInputed, setDataInputed] = useState({login:'', password:'',passwordConfirmation:'', email:'', fullName:'', role: 'user'});
     const [curTimeoutID, setCurTimeoutID] = useState();
     const [fetchRegister, isPostsLoading, postError] = useFetching(async () => {// eslint-disable-next-line
-            const response = await PostService.createUser(localStorage.getItem('access'), dataInputed);
+            await PostService.createUser(localStorage.getItem('access'), dataInputed);
             setError("success");
             setTimeout(() =>{
                 router('/admin/users');

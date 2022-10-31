@@ -24,8 +24,8 @@ const CommentCreate = (props) =>{
         
     }
 
-    const [fetchCreatePost, isCreatePostLoading, errorCreatePost] = useFetching(async () => {
-        const response = await PostService.createComment(localStorage.getItem('access'), props.id, comment, props.reply.commentID);
+    const [fetchCreatePost, , errorCreatePost] = useFetching(async () => {
+        await PostService.createComment(localStorage.getItem('access'), props.id, comment, props.reply.commentID);
         props.setReply({commentID: '', author: '', content: ''});
         props.fetchComments();
 
